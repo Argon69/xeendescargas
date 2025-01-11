@@ -131,6 +131,8 @@
       display: inline-block;
       font-weight: 500;
       box-shadow: 0 5px 15px rgba(0, 242, 254, 0.3);
+      position: relative;
+      z-index: 1;
     }
 
     @media (hover: hover) {
@@ -189,7 +191,7 @@
     </svg>
     
     <h1 class="title">XEEN DESCARGAS</h1>
-    <p class="subtitle">Portal de descargas de aplicaciones by Nixon</p>
+    <p class="subtitle">Portal de descargas by Nixon</p>
 
     <section class="downloads">
       <div class="app-card">
@@ -199,7 +201,7 @@
         </svg>
         <h2>MagisTV</h2>
         <p>La mejor experiencia de televisión en vivo con miles de canales y contenido on-demand en alta calidad</p>
-        <a href="https://github.com/Argon69/xenontechmagis/raw/main/magis/mgs_4.24.1_47da52ae_20231218_220_release_jiagu.apk" class="download-btn">Descargar</a>
+        <a href="https://github.com/Argon69/xenontechmagis/raw/main/magis/mgs_4.24.1_47da52ae_20231218_220_release_jiagu.apk" class="download-btn" download>Descargar</a>
       </div>
 
       <div class="app-card">
@@ -209,12 +211,28 @@
         </svg>
         <h2>MagisTV Móvil</h2>
         <p>Lleva tus canales favoritos contigo. Streaming optimizado para dispositivos móviles</p>
-        <a href="https://github.com/Argon69/xenontechmagis/raw/refs/heads/main/magis/mgsMob_5.6.3_f620e598_20240321_180_release_jiagu.apk" class="download-btn">Descargar</a>
+        <a href="https://github.com/Argon69/xenontechmagis/raw/refs/heads/main/magis/mgsMob_5.6.3_f620e598_20240321_180_release_jiagu.apk" class="download-btn" download>Descargar</a>
       </div>
     </section>
   </main>
 
   <script>
+    // interactividad de los botones de descarga :v
+    document.querySelectorAll('.download-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        // Iniciar la descarga ahhh
+        const downloadUrl = btn.getAttribute('href');
+        if (downloadUrl) {
+          // feedback visual yes
+          btn.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            btn.style.transform = 'scale(1)';
+          }, 200);
+        }
+      });
+    });
+
+    // interactividad de las tarjetas xd
     document.querySelectorAll('.app-card').forEach(card => {
       card.addEventListener('mouseover', () => {
         card.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
