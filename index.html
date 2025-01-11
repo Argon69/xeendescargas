@@ -26,42 +26,44 @@
     }
 
     .logo {
-      width: 180px;
-      height: 180px;
+      width: clamp(120px, 15vw, 180px);
+      height: clamp(120px, 15vw, 180px);
       margin-bottom: 2rem;
       filter: drop-shadow(0 0 15px rgba(0, 242, 254, 0.3));
     }
 
     .title {
-      font-size: 4rem;
+      font-size: clamp(2rem, 6vw, 4rem);
       margin-bottom: 1rem;
       background: linear-gradient(45deg, #00f2fe, #4facfe);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 0 0 30px rgba(0, 242, 254, 0.2);
       letter-spacing: 2px;
+      padding: 0 1rem;
     }
 
     .subtitle {
-      font-size: 1.8rem;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
       margin-bottom: 4rem;
       color: #a0a0a0;
       font-weight: 300;
+      padding: 0 1rem;
     }
 
     .downloads {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+      gap: clamp(1.5rem, 3vw, 3rem);
       width: 100%;
       max-width: 1400px;
-      padding: 2rem;
+      padding: clamp(1rem, 2vw, 2rem);
     }
 
     .app-card {
       background: rgba(255, 255, 255, 0.05);
       border-radius: 20px;
-      padding: 3rem 2rem;
+      padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 2vw, 2rem);
       text-align: center;
       transition: all 0.4s ease;
       backdrop-filter: blur(10px);
@@ -86,21 +88,23 @@
       opacity: 1;
     }
 
-    .app-card:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    @media (hover: hover) {
+      .app-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
     }
 
     .app-icon {
-      width: 120px;
-      height: 120px;
+      width: clamp(80px, 10vw, 120px);
+      height: clamp(80px, 10vw, 120px);
       margin-bottom: 2rem;
       border-radius: 22px;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 
     .app-card h2 {
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 4vw, 2rem);
       margin-bottom: 1rem;
       background: linear-gradient(45deg, #00f2fe, #4facfe);
       -webkit-background-clip: text;
@@ -108,7 +112,7 @@
     }
 
     .app-card p {
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 2vw, 1.1rem);
       color: #bcbcbc;
       margin-bottom: 2rem;
       line-height: 1.6;
@@ -117,10 +121,10 @@
     .download-btn {
       background: linear-gradient(45deg, #00f2fe, #4facfe);
       color: white;
-      padding: 1.2rem 3rem;
+      padding: clamp(0.8rem, 2vw, 1.2rem) clamp(2rem, 4vw, 3rem);
       border: none;
       border-radius: 30px;
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 2vw, 1.2rem);
       cursor: pointer;
       transition: all 0.3s;
       text-decoration: none;
@@ -129,9 +133,11 @@
       box-shadow: 0 5px 15px rgba(0, 242, 254, 0.3);
     }
 
-    .download-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 25px rgba(0, 242, 254, 0.4);
+    @media (hover: hover) {
+      .download-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(0, 242, 254, 0.4);
+      }
     }
 
     @keyframes float {
@@ -142,6 +148,30 @@
 
     .floating {
       animation: float 4s ease-in-out infinite;
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 1rem;
+      }
+      
+      .downloads {
+        gap: 1.5rem;
+      }
+      
+      .app-card {
+        padding: 1.5rem 1rem;
+      }
+    }
+
+    @media (min-width: 2000px) {
+      .downloads {
+        max-width: 1800px;
+      }
+      
+      html {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
@@ -158,13 +188,12 @@
       <text x="50" y="60" text-anchor="middle" fill="url(#logoGradient)" font-size="24" font-weight="bold">XEEN</text>
     </svg>
     
-    <h1 class="title">XEEN DESCARGAS</h1>
-    <p class="subtitle">Portal de descargas de aplicaciones by Nixon</p>
+    <h1 class="title">XEEN SERVICES</h1>
+    <p class="subtitle">Tu portal de entretenimiento digital</p>
 
     <section class="downloads">
       <div class="app-card">
         <svg class="app-icon" viewBox="0 0 50 50">
-          <!-- Placeholder for MagisTV logo/image -->
           <rect x="5" y="5" width="40" height="40" rx="10" fill="url(#logoGradient)"/>
           <text x="25" y="32" text-anchor="middle" fill="#1a1a2e" font-size="16" font-weight="bold">TV</text>
         </svg>
@@ -175,7 +204,6 @@
 
       <div class="app-card">
         <svg class="app-icon" viewBox="0 0 50 50">
-          <!-- Placeholder for MagisTV Mobile logo/image -->
           <rect x="5" y="5" width="40" height="40" rx="10" fill="url(#logoGradient)"/>
           <text x="25" y="32" text-anchor="middle" fill="#1a1a2e" font-size="14" font-weight="bold">MÓVIL</text>
         </svg>
