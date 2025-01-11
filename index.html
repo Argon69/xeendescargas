@@ -1,0 +1,200 @@
+<html><head><base href="." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XEEN SERVICES - Streaming & Apps</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .logo {
+      width: 180px;
+      height: 180px;
+      margin-bottom: 2rem;
+      filter: drop-shadow(0 0 15px rgba(0, 242, 254, 0.3));
+    }
+
+    .title {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #00f2fe, #4facfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(0, 242, 254, 0.2);
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      font-size: 1.8rem;
+      margin-bottom: 4rem;
+      color: #a0a0a0;
+      font-weight: 300;
+    }
+
+    .downloads {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 3rem;
+      width: 100%;
+      max-width: 1400px;
+      padding: 2rem;
+    }
+
+    .app-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      text-align: center;
+      transition: all 0.4s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(0, 242, 254, 0.1), rgba(79, 172, 254, 0.1));
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .app-card:hover::before {
+      opacity: 1;
+    }
+
+    .app-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .app-icon {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 2rem;
+      border-radius: 22px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .app-card h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #00f2fe, #4facfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .app-card p {
+      font-size: 1.1rem;
+      color: #bcbcbc;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .download-btn {
+      background: linear-gradient(45deg, #00f2fe, #4facfe);
+      color: white;
+      padding: 1.2rem 3rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      font-weight: 500;
+      box-shadow: 0 5px 15px rgba(0, 242, 254, 0.3);
+    }
+
+    .download-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 242, 254, 0.4);
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .floating {
+      animation: float 4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <svg class="logo floating" viewBox="0 0 100 100">
+      <defs>
+        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#00f2fe"/>
+          <stop offset="100%" style="stop-color:#4facfe"/>
+        </linearGradient>
+      </defs>
+      <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logoGradient)" stroke-width="3"/>
+      <text x="50" y="60" text-anchor="middle" fill="url(#logoGradient)" font-size="24" font-weight="bold">XEEN</text>
+    </svg>
+    
+    <h1 class="title">XEEN DESCARGAS</h1>
+    <p class="subtitle">Portal de descargas de aplicaciones by Nixon</p>
+
+    <section class="downloads">
+      <div class="app-card">
+        <svg class="app-icon" viewBox="0 0 50 50">
+          <!-- Placeholder for MagisTV logo/image -->
+          <rect x="5" y="5" width="40" height="40" rx="10" fill="url(#logoGradient)"/>
+          <text x="25" y="32" text-anchor="middle" fill="#1a1a2e" font-size="16" font-weight="bold">TV</text>
+        </svg>
+        <h2>MagisTV</h2>
+        <p>La mejor experiencia de televisión en vivo con miles de canales y contenido on-demand en alta calidad</p>
+        <a href="https://github.com/Argon69/xenontechmagis/raw/main/magis/mgs_4.24.1_47da52ae_20231218_220_release_jiagu.apk" class="download-btn">Descargar</a>
+      </div>
+
+      <div class="app-card">
+        <svg class="app-icon" viewBox="0 0 50 50">
+          <!-- Placeholder for MagisTV Mobile logo/image -->
+          <rect x="5" y="5" width="40" height="40" rx="10" fill="url(#logoGradient)"/>
+          <text x="25" y="32" text-anchor="middle" fill="#1a1a2e" font-size="14" font-weight="bold">MÓVIL</text>
+        </svg>
+        <h2>MagisTV Móvil</h2>
+        <p>Lleva tus canales favoritos contigo. Streaming optimizado para dispositivos móviles</p>
+        <a href="https://github.com/Argon69/xenontechmagis/raw/refs/heads/main/magis/mgsMob_5.6.3_f620e598_20240321_180_release_jiagu.apk" class="download-btn">Descargar</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.querySelectorAll('.app-card').forEach(card => {
+      card.addEventListener('mouseover', () => {
+        card.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+      });
+      
+      card.addEventListener('mouseout', () => {
+        card.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+      });
+    });
+  </script>
+</body></html>
