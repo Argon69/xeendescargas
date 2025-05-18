@@ -9,9 +9,86 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: "#eef2ff",
+                100: "#e0e7ff",
+                500: "#6366f1",
+                600: "#4f46e5",
+                700: "#4338ca",
+              },
+              dark: "#121212",
+            },
+            animation: {
+              "fade-in": "fadeIn 0.5s ease-out",
+              "slide-up": "slideUp 0.5s ease-out",
+            },
+            keyframes: {
+              fadeIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+              slideUp: {
+                "0%": { transform: "translateY(20px)", opacity: "0" },
+                "100%": { transform: "translateY(0)", opacity: "1" },
+              },
+            },
+          },
+        },
+      };
+    </script>
     <style>
       body {
         font-family: "Inter", sans-serif;
+        background-color: #f9fafb;
+      }
+
+      .app-card {
+        transition: all 0.3s ease;
+      }
+
+      .app-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      .category-tab {
+        transition: all 0.2s ease;
+        position: relative;
+      }
+
+      .category-tab.active::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #6366f1;
+        border-radius: 1px;
+      }
+
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
       }
     </style>
   </head>
@@ -22,277 +99,561 @@
         <div class="flex items-center justify-between px-4 py-3">
           <!-- Logo -->
           <div class="flex items-center space-x-3">
-            <svg class="w-8 h-8" viewBox="0 0 40 40">
-              <rect width="40" height="40" rx="8" fill="#6366f1" />
-              <text
-                x="20"
-                y="25"
-                text-anchor="middle"
-                fill="white"
-                font-size="16"
-                font-weight="bold"
-              >
-                X
-              </text>
-            </svg>
-            <span class="text-xl font-bold text-gray-800"
-              >XEEN STORE BY NIXON</span
+            <div
+              class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg"
             >
+              <span class="text-xl font-bold text-white">X</span>
+            </div>
+            <span class="text-xl font-bold text-gray-800">XEEN STORE</span>
           </div>
 
           <!-- Search Bar -->
           <div class="hidden md:flex flex-1 max-w-2xl mx-6">
             <div class="relative w-full">
               <input
+                id="search-input"
                 type="text"
                 placeholder="Buscar aplicaciones..."
-                class="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-indigo-500"
+                class="w-full pl-10 pr-4 py-2.5 rounded-full bg-gray-100 border-none focus:ring-2 focus:ring-primary-500 focus:bg-white transition-all"
               />
-              <svg
-                class="w-5 h-5 text-gray-500 absolute left-3 top-2.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
+              <i
+                class="fa-solid fa-magnifying-glass text-gray-500 absolute left-3.5 top-3"
+              ></i>
             </div>
           </div>
 
-          <!-- Menu Icon -->
-          <button class="p-2 rounded-lg hover:bg-gray-100">
-            <svg
-              class="w-6 h-6 text-gray-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
-          </button>
+          <!-- User Menu -->
+          <div class="flex items-center space-x-4">
+            <button class="p-2.5 rounded-full text-gray-600 hover:bg-gray-100 md:hidden">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <button class="p-2.5 rounded-full text-gray-600 hover:bg-gray-100">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+            <button class="p-2.5 rounded-full text-gray-600 hover:bg-gray-100">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+          </div>
         </div>
       </div>
     </header>
 
+    <!-- Category Navigation -->
+    <!-- <nav class="bg-white border-b border-gray-200 sticky top-16 z-40">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="scrollbar-hide overflow-x-auto">
+          <div class="flex space-x-6 py-3 whitespace-nowrap">
+            <button class="category-tab active px-1 py-2 text-sm font-medium text-gray-900">
+              Destacadas
+            </button>
+            <button class="category-tab px-1 py-2 text-sm font-medium text-gray-600 hover:text-gray-900">
+              Multimedia
+            </button>
+            <button class="category-tab px-1 py-2 text-sm font-medium text-gray-600 hover:text-gray-900">
+              Productividad
+            </button>
+            <button class="category-tab px-1 py-2 text-sm font-medium text-gray-600 hover:text-gray-900">
+              Juegos
+            </button>
+            <button class="category-tab px-1 py-2 text-sm font-medium text-gray-600 hover:text-gray-900">
+              Utilidades
+            </button>
+            <button class="category-tab px-1 py-2 text-sm font-medium text-gray-600 hover:text-gray-900">
+              Educación
+            </button>
+          </div>
+        </div>
+      </div> -->
+    </nav>
+
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 py-8">
-      <!-- Featured Section -->
-      <div class="mb-12">
-        <h2 class="text-2xl font-bold text-gray-800 mb-6">Apps Destacadas</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- MagisTV Card -->
-          <div
-            class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
+    <main class="max-w-7xl mx-auto px-4 py-6">
+      <!-- Hero Banner -->
+      <section class="mb-8 animate__animated animate__fadeIn">
+        <div class="rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg overflow-hidden">
+          <div class="md:flex">
+            <div class="p-8 md:w-3/5">
+              <h2 class="text-3xl font-bold text-white mb-2">
+                MagisTV Premium
+              </h2>
+              <p class="text-indigo-100 mb-6">
+                Disfruta de miles de canales y contenido premium en tu dispositivo
+                favorito
+              </p>
+              <a
+                href="https://github.com/Argon69/xenontechmagis/raw/refs/heads/main/magis/signMagisTV_TG-MALL.apk"
+                class="download-btn inline-flex items-center px-5 py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-indigo-50 transition-colors"
+              >
+                <i class="fa-solid fa-download mr-2"></i>
+                Descargar ahora
+              </a>
+            </div>
+            <div class="hidden md:block md:w-2/5">
+              <div class="h-full flex items-center justify-center p-6">
+                <img
+                  src="https://placehold.co/300x200/6366F1/FFFFFF?text=MagisTV"
+                  alt="MagisTV"
+                  class="rounded-xl shadow-lg max-h-48"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- App Section -->
+      <section class="mb-10">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold text-gray-800">Apps Populares</h2>
+          <a
+            href="#"
+            class="text-primary-600 font-medium text-sm hover:underline"
           >
-            <div class="p-6">
-              <div class="flex items-start space-x-4">
-                <div
-                  class="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center flex-shrink-0"
-                >
-                  <svg
-                    class="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M15 10l-4 4-2-2"
-                    />
-                  </svg>
+            Ver todas
+          </a>
+        </div>
+
+        <div
+          id="apps-container"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+        >
+          <!-- MagisTV Card -->
+          <div class="app-card bg-white rounded-xl shadow-sm overflow-hidden">
+            <div class="aspect-w-16 aspect-h-9 bg-gray-100">
+              <img
+                src="https://placehold.co/600x350/6366F1/FFFFFF?text=MagisTV"
+                alt="MagisTV"
+                class="w-full h-48 object-cover"
+              />
+            </div>
+            <div class="p-5">
+              <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-4">
+                  <i class="fa-solid fa-tv text-white text-lg"></i>
                 </div>
-                <div class="flex-1">
+                <div>
                   <h3 class="text-lg font-semibold text-gray-800">MagisTV</h3>
                   <p class="text-sm text-gray-500">XEEN Services</p>
-                  <div class="flex items-center mt-2">
-                    <div class="flex items-center">
-                      <svg
-                        class="w-4 h-4 text-yellow-400"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        />
-                      </svg>
-                      <span class="ml-1 text-sm text-gray-600">4.8</span>
-                    </div>
-                    <span class="mx-2 text-gray-300">•</span>
-                    <span class="text-sm text-gray-500">45 MB</span>
-                  </div>
                 </div>
               </div>
-              <p class="mt-4 text-sm text-gray-600">
+
+              <div class="flex items-center text-sm mb-3">
+                <div class="flex items-center text-yellow-400">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <span class="ml-2 text-gray-600">4.8</span>
+                <span class="mx-2 text-gray-300">•</span>
+                <span class="text-gray-500">45 MB</span>
+              </div>
+
+              <p class="text-sm text-gray-600 mb-4">
                 La mejor aplicación para disfrutar de tus canales favoritos en
                 cualquier momento.
               </p>
-              <div class="mt-6 flex space-x-3">
+
+              <div class="flex space-x-3">
                 <a
                   href="https://github.com/Argon69/xenontechmagis/raw/refs/heads/main/magis/signMagisTV_TG-MALL.apk"
-                  class="flex-1 text-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors"
+                  class="download-btn flex-1 text-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors"
                 >
-                  Versión Actual
+                  Descargar
                 </a>
-                <a
-                  href="https://github.com/Argon69/xenontechmagis/raw/main/magis/mgs_4.24.1_47da52ae_20231218_220_release_jiagu.apk"
-                  class="flex-1 text-center px-4 py-2 border border-indigo-600 text-indigo-600 text-sm font-medium rounded-lg hover:bg-indigo-50 transition-colors"
-                >
-                  Versión Antigua
-                </a>
+                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
               </div>
             </div>
           </div>
 
           <!-- MagisTV Mobile Card -->
-          <div
-            class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
-          >
-            <div class="p-6">
-              <div class="flex items-start space-x-4">
-                <div
-                  class="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center flex-shrink-0"
-                >
-                  <svg
-                    class="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
-                    />
-                  </svg>
+          <div class="app-card bg-white rounded-xl shadow-sm overflow-hidden">
+            <div class="aspect-w-16 aspect-h-9 bg-gray-100">
+              <img
+                src="https://placehold.co/600x350/9333EA/FFFFFF?text=MagisTV+Móvil"
+                alt="MagisTV Mobile"
+                class="w-full h-48 object-cover"
+              />
+            </div>
+            <div class="p-5">
+              <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-4">
+                  <i class="fa-solid fa-mobile-screen text-white text-lg"></i>
                 </div>
-                <div class="flex-1">
+                <div>
                   <h3 class="text-lg font-semibold text-gray-800">
                     MagisTV Móvil
                   </h3>
                   <p class="text-sm text-gray-500">XEEN Services</p>
-                  <div class="flex items-center mt-2">
-                    <div class="flex items-center">
-                      <svg
-                        class="w-4 h-4 text-yellow-400"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        />
-                      </svg>
-                      <span class="ml-1 text-sm text-gray-600">4.7</span>
-                    </div>
-                    <span class="mx-2 text-gray-300">•</span>
-                    <span class="text-sm text-gray-500">38 MB</span>
-                  </div>
                 </div>
               </div>
-              <p class="mt-4 text-sm text-gray-600">
+
+              <div class="flex items-center text-sm mb-3">
+                <div class="flex items-center text-yellow-400">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <span class="ml-2 text-gray-600">4.7</span>
+                <span class="mx-2 text-gray-300">•</span>
+                <span class="text-gray-500">38 MB</span>
+              </div>
+
+              <p class="text-sm text-gray-600 mb-4">
                 Versión optimizada para dispositivos móviles. Disfruta de tus
                 contenidos favoritos en cualquier lugar.
               </p>
-              <div class="mt-6">
+
+              <div class="flex space-x-3">
                 <a
                   href="https://github.com/Argon69/xenontechmagis/raw/refs/heads/main/magis/mgsMob_5.6.3_f620e598_20240321_180_release_jiagu.apk"
-                  class="block w-full text-center px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700 transition-colors"
+                  class="download-btn flex-1 text-center px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700 transition-colors"
                 >
                   Descargar
                 </a>
+                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
               </div>
             </div>
           </div>
 
           <!-- Office 365 Card -->
-          <div
-            class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
-          >
-            <div class="p-6">
-              <div class="flex items-start space-x-4">
-                <div
-                  class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center flex-shrink-0"
-                >
-                  <svg
-                    class="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>
+          <div class="app-card bg-white rounded-xl shadow-sm overflow-hidden">
+            <div class="aspect-w-16 aspect-h-9 bg-gray-100">
+              <img
+                src="https://placehold.co/600x350/2563EB/FFFFFF?text=Office+365"
+                alt="Office 365"
+                class="w-full h-48 object-cover"
+              />
+            </div>
+            <div class="p-5">
+              <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-4">
+                  <i class="fa-solid fa-file-word text-white text-lg"></i>
                 </div>
-                <div class="flex-1">
+                <div>
                   <h3 class="text-lg font-semibold text-gray-800">
                     Office 365
                   </h3>
                   <p class="text-sm text-gray-500">XEEN Services</p>
-                  <div class="flex items-center mt-2">
-                    <div class="flex items-center">
-                      <svg
-                        class="w-4 h-4 text-yellow-400"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                        />
-                      </svg>
-                      <span class="ml-1 text-sm text-gray-600">4.9</span>
-                    </div>
-                    <span class="mx-2 text-gray-300">•</span>
-                    <span class="text-sm text-gray-500">4 GB</span>
-                  </div>
                 </div>
               </div>
-              <p class="mt-4 text-sm text-gray-600">
+
+              <div class="flex items-center text-sm mb-3">
+                <div class="flex items-center text-yellow-400">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                </div>
+                <span class="ml-2 text-gray-600">4.9</span>
+                <span class="mx-2 text-gray-300">•</span>
+                <span class="text-gray-500">4 GB</span>
+              </div>
+
+              <p class="text-sm text-gray-600 mb-4">
                 Suite completa de Office 365. Incluye instalador y activador.
               </p>
-              <div class="mt-6">
+
+              <div class="flex space-x-3">
                 <a
                   href="https://drive.google.com/file/d/1VINHl1E3fqkWYdJpj3Nble5NGNjmFhui/view?usp=sharing"
-                  class="block w-full text-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                  class="download-btn flex-1 text-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   Descargar
                 </a>
+                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
               </div>
             </div>
           </div>
+
+          <!-- Movavi Video Editor Card -->
+          <div class="app-card bg-white rounded-xl shadow-sm overflow-hidden">
+            <div class="aspect-w-16 aspect-h-9 bg-gray-100">
+              <img
+                src="https://placehold.co/600x350/10B981/FFFFFF?text=Movavi+Video+Editor"
+                alt="Movavi Video Editor"
+                class="w-full h-48 object-cover"
+              />
+            </div>
+            <div class="p-5">
+              <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-4">
+                  <i class="fa-solid fa-film text-white text-lg"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-800">
+                    Movavi Video Editor
+                  </h3>
+                  <p class="text-sm text-gray-500">XEEN Services</p>
+                </div>
+              </div>
+
+              <div class="flex items-center text-sm mb-3">
+                <div class="flex items-center text-yellow-400">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-regular fa-star"></i>
+                </div>
+                <span class="ml-2 text-gray-600">4.0</span>
+                <span class="mx-2 text-gray-300">•</span>
+                <span class="text-gray-500">1.8 GB</span>
+              </div>
+
+              <p class="text-sm text-gray-600 mb-4">
+                Editor de video profesional. Crea videos impresionantes con efectos, transiciones y más.
+              </p>
+
+              <div class="flex space-x-3">
+                <a
+                  href="https://drive.google.com/file/d/17DDPkcP2cHpJMO8MNk5DcEJ5YYPvORNJ/view?usp=drive_link"
+                  class="download-btn flex-1 text-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors"
+                >
+                  Descargar
+                </a>
+                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          
         </div>
-      </div>
+      </section>
+
+      
     </main>
 
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-200 mt-8">
+      <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row md:justify-between">
+          <div class="mb-6 md:mb-0">
+            <div class="flex items-center space-x-3 mb-4">
+              <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center flex-shrink-0">
+                <span class="text-sm font-bold text-white">X</span>
+              </div>
+              <span class="text-lg font-bold text-gray-800">XEEN STORE</span>
+            </div>
+            <p class="text-sm text-gray-600 max-w-md">
+              Tu tienda de aplicaciones y servicios premium. Todos los derechos
+              reservados © 2023
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-8 sm:grid-cols-3">
+            <div>
+              <h3 class="text-sm font-semibold text-gray-800 mb-3">Explorar</h3>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="#"
+                    class="text-sm text-gray-600 hover:text-primary-600"
+                  >
+                    Apps
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-sm text-gray-600 hover:text-primary-600"
+                  >
+                    Juegos
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-sm text-gray-600 hover:text-primary-600"
+                  >
+                    Películas
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-sm font-semibold text-gray-800 mb-3">
+                Información
+              </h3>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="#"
+                    class="text-sm text-gray-600 hover:text-primary-600"
+                  >
+                    Acerca de
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-sm text-gray-600 hover:text-primary-600"
+                  >
+                    Contacto
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-sm text-gray-600 hover:text-primary-600"
+                  >
+                    Blog
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-sm font-semibold text-gray-800 mb-3">Legal</h3>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="#"
+                    class="text-sm text-gray-600 hover:text-primary-600"
+                  >
+                    Términos
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-sm text-gray-600 hover:text-primary-600"
+                  >
+                    Privacidad
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-200 mt-8 pt-6 flex flex-col md:flex-row md:justify-between md:items-center">
+          <p class="text-xs text-gray-600">
+            © 2023 XEEN STORE BY NIXON. Todos los derechos reservados.
+          </p>
+          <div class="flex space-x-4 mt-4 md:mt-0">
+            <a
+              href="#"
+              class="text-gray-600 hover:text-primary-600"
+            >
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-600 hover:text-primary-600"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-600 hover:text-primary-600"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
     <script>
-      // Efectos de hover y click
-      document.querySelectorAll("a").forEach((button) => {
-        button.addEventListener("click", function () {
-          this.style.transform = "scale(0.98)";
-          setTimeout(() => {
-            this.style.transform = "scale(1)";
-          }, 100);
+      // Search functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("search-input");
+        const appsContainer = document.getElementById("apps-container");
+        const appCards = appsContainer.querySelectorAll(".app-card");
+
+        searchInput.addEventListener("input", function () {
+          const searchTerm = this.value.toLowerCase();
+
+          appCards.forEach((card) => {
+            const appName = card.querySelector("h3").textContent.toLowerCase();
+            const appDescription = card
+              .querySelector("p.text-sm.text-gray-600")
+              .textContent.toLowerCase();
+
+            if (appName.includes(searchTerm) || appDescription.includes(searchTerm)) {
+              card.style.display = "";
+              card.classList.add("animate__animated", "animate__fadeIn");
+              setTimeout(() => {
+                card.classList.remove("animate__animated", "animate__fadeIn");
+              }, 500);
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+
+        // Category tabs
+        const categoryTabs = document.querySelectorAll(".category-tab");
+        categoryTabs.forEach((tab) => {
+          tab.addEventListener("click", function () {
+            categoryTabs.forEach((t) => t.classList.remove("active"));
+            this.classList.add("active");
+
+            // Animation for category change
+            appCards.forEach((card) => {
+              card.classList.add("animate__animated", "animate__fadeIn");
+              setTimeout(() => {
+                card.classList.remove("animate__animated", "animate__fadeIn");
+              }, 500);
+            });
+          });
+        });
+
+        // Download button click event with SweetAlert
+        const downloadBtns = document.querySelectorAll(".download-btn");
+        downloadBtns.forEach((btn) => {
+          btn.addEventListener("click", function (e) {
+            const appName =
+              this.closest(".app-card")?.querySelector("h3")?.textContent ||
+              "la aplicación";
+
+            Swal.fire({
+              title: `Descargando ${appName}`,
+              text: "Tu descarga comenzará en breve",
+              icon: "info",
+              showCancelButton: false,
+              confirmButtonColor: "#6366f1",
+              confirmButtonText: "Aceptar",
+              timer: 3000,
+              timerProgressBar: true,
+            });
+
+            // We don't prevent default to allow the download
+          });
+        });
+
+        // Add animations to app cards on scroll
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate__animated", "animate__fadeInUp");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        // Observe all app cards
+        document.querySelectorAll(".app-card").forEach((card) => {
+          observer.observe(card);
         });
       });
     </script>
