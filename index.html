@@ -96,15 +96,15 @@
     <!-- Header -->
     <header class="sticky top-0 z-50 bg-white shadow-sm">
       <div class="max-w-7xl mx-auto">
-        <div class="flex items-center justify-between px-4 py-3">
+        <div class="flex items-center justify-between px-3 sm:px-4 py-3">
           <!-- Logo -->
-          <div class="flex items-center space-x-3">
+          <div class="flex items-center space-x-2 sm:space-x-3">
             <div
-              class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg"
+              class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg"
             >
-              <span class="text-xl font-bold text-white">X</span>
+              <span class="text-lg sm:text-xl font-bold text-white">X</span>
             </div>
-            <span class="text-xl font-bold text-gray-800">XEEN STORE</span>
+            <span class="text-lg sm:text-xl font-bold text-gray-800">XEEN STORE</span>
           </div>
 
           <!-- Search Bar -->
@@ -123,16 +123,31 @@
           </div>
 
           <!-- User Menu -->
-          <div class="flex items-center space-x-4">
-            <button class="p-2.5 rounded-full text-gray-600 hover:bg-gray-100 md:hidden">
-              <i class="fa-solid fa-magnifying-glass"></i>
+          <div class="flex items-center space-x-1 sm:space-x-4">
+            <button class="p-2 sm:p-2.5 rounded-full text-gray-600 hover:bg-gray-100 md:hidden">
+              <i class="fa-solid fa-magnifying-glass text-sm sm:text-base"></i>
             </button>
-            <button class="p-2.5 rounded-full text-gray-600 hover:bg-gray-100">
-              <i class="fa-regular fa-heart"></i>
+            <button class="p-2 sm:p-2.5 rounded-full text-gray-600 hover:bg-gray-100">
+              <i class="fa-regular fa-heart text-sm sm:text-base"></i>
             </button>
-            <button class="p-2.5 rounded-full text-gray-600 hover:bg-gray-100">
-              <i class="fa-solid fa-bars"></i>
+            <button class="p-2 sm:p-2.5 rounded-full text-gray-600 hover:bg-gray-100">
+              <i class="fa-solid fa-bars text-sm sm:text-base"></i>
             </button>
+          </div>
+        </div>
+
+        <!-- Mobile Search Bar -->
+        <div class="md:hidden px-3 pb-3">
+          <div class="relative w-full">
+            <input
+              id="mobile-search-input"
+              type="text"
+              placeholder="Buscar aplicaciones..."
+              class="w-full pl-10 pr-4 py-2.5 rounded-full bg-gray-100 border-none focus:ring-2 focus:ring-primary-500 focus:bg-white transition-all text-sm"
+            />
+            <i
+              class="fa-solid fa-magnifying-glass text-gray-500 absolute left-3.5 top-3"
+            ></i>
           </div>
         </div>
       </div>
@@ -167,22 +182,22 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 py-6">
+    <main class="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
       <!-- Hero Banner -->
-      <section class="mb-8 animate__animated animate__fadeIn">
-        <div class="rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg overflow-hidden">
+      <section class="mb-6 sm:mb-8 animate__animated animate__fadeIn">
+        <div class="rounded-xl sm:rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg overflow-hidden">
           <div class="md:flex">
-            <div class="p-8 md:w-3/5">
-              <h2 class="text-3xl font-bold text-white mb-2">
+            <div class="p-4 sm:p-6 md:p-8 md:w-3/5">
+              <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">
                 MagisTV Premium
               </h2>
-              <p class="text-indigo-100 mb-6">
+              <p class="text-indigo-100 mb-4 sm:mb-6 text-sm sm:text-base">
                 Disfruta de miles de canales y contenido premium en tu dispositivo
                 favorito
               </p>
               <a
                 href="https://github.com/Argon69/xenontechmagis/raw/refs/heads/main/magis/signMagisTV_TG-MALL.apk"
-                class="download-btn inline-flex items-center px-5 py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-indigo-50 transition-colors"
+                class="download-btn inline-flex items-center px-4 sm:px-5 py-2.5 sm:py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-indigo-50 transition-colors text-sm sm:text-base"
               >
                 <i class="fa-solid fa-download mr-2"></i>
                 Descargar ahora
@@ -202,12 +217,12 @@
       </section>
 
       <!-- App Section -->
-      <section class="mb-10">
-        <div class="flex items-center justify-between mb-6">
-          <h2 class="text-2xl font-bold text-gray-800">Apps Populares</h2>
+      <section class="mb-8 sm:mb-10">
+        <div class="flex items-center justify-between mb-4 sm:mb-6">
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Apps Populares</h2>
           <a
             href="#"
-            class="text-primary-600 font-medium text-sm hover:underline"
+            class="text-primary-600 font-medium text-xs sm:text-sm hover:underline"
           >
             Ver todas
           </a>
@@ -215,7 +230,7 @@
 
         <div
           id="apps-container"
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
         >
           <!-- MagisTV Card -->
           <div class="app-card bg-white rounded-xl shadow-sm overflow-hidden">
@@ -223,21 +238,21 @@
               <img
                 src="https://placehold.co/600x350/6366F1/FFFFFF?text=MagisTV"
                 alt="MagisTV"
-                class="w-full h-48 object-cover"
+                class="w-full h-40 sm:h-48 object-cover"
               />
             </div>
-            <div class="p-5">
+            <div class="p-4 sm:p-5">
               <div class="flex items-center mb-3">
-                <div class="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-4">
-                  <i class="fa-solid fa-tv text-white text-lg"></i>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-indigo-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-3 sm:mr-4">
+                  <i class="fa-solid fa-tv text-white text-sm sm:text-lg"></i>
                 </div>
-                <div>
-                  <h3 class="text-lg font-semibold text-gray-800">MagisTV</h3>
-                  <p class="text-sm text-gray-500">XEEN Services</p>
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-base sm:text-lg font-semibold text-gray-800 truncate">MagisTV</h3>
+                  <p class="text-xs sm:text-sm text-gray-500">XEEN Services</p>
                 </div>
               </div>
 
-              <div class="flex items-center text-sm mb-3">
+              <div class="flex items-center text-xs sm:text-sm mb-3">
                 <div class="flex items-center text-yellow-400">
                   <i class="fa-solid fa-star"></i>
                   <i class="fa-solid fa-star"></i>
@@ -250,20 +265,20 @@
                 <span class="text-gray-500">45 MB</span>
               </div>
 
-              <p class="text-sm text-gray-600 mb-4">
+              <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 line-clamp-2">
                 La mejor aplicación para disfrutar de tus canales favoritos en
                 cualquier momento.
               </p>
 
-              <div class="flex space-x-3">
+              <div class="flex space-x-2 sm:space-x-3">
                 <a
                   href="https://github.com/Argon69/xenontechmagis/raw/refs/heads/main/magis/signMagisTV_TG-MALL.apk"
-                  class="download-btn flex-1 text-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors"
+                  class="download-btn flex-1 text-center px-3 sm:px-4 py-2 bg-indigo-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors"
                 >
                   Descargar
                 </a>
-                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50">
-                  <i class="fa-regular fa-heart"></i>
+                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 flex-shrink-0">
+                  <i class="fa-regular fa-heart text-xs sm:text-sm"></i>
                 </button>
               </div>
             </div>
@@ -275,23 +290,23 @@
               <img
                 src="https://placehold.co/600x350/9333EA/FFFFFF?text=MagisTV+Móvil"
                 alt="MagisTV Mobile"
-                class="w-full h-48 object-cover"
+                class="w-full h-40 sm:h-48 object-cover"
               />
             </div>
-            <div class="p-5">
+            <div class="p-4 sm:p-5">
               <div class="flex items-center mb-3">
-                <div class="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-4">
-                  <i class="fa-solid fa-mobile-screen text-white text-lg"></i>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-3 sm:mr-4">
+                  <i class="fa-solid fa-mobile-screen text-white text-sm sm:text-lg"></i>
                 </div>
-                <div>
-                  <h3 class="text-lg font-semibold text-gray-800">
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-base sm:text-lg font-semibold text-gray-800 truncate">
                     MagisTV Móvil
                   </h3>
-                  <p class="text-sm text-gray-500">XEEN Services</p>
+                  <p class="text-xs sm:text-sm text-gray-500">XEEN Services</p>
                 </div>
               </div>
 
-              <div class="flex items-center text-sm mb-3">
+              <div class="flex items-center text-xs sm:text-sm mb-3">
                 <div class="flex items-center text-yellow-400">
                   <i class="fa-solid fa-star"></i>
                   <i class="fa-solid fa-star"></i>
@@ -304,20 +319,20 @@
                 <span class="text-gray-500">38 MB</span>
               </div>
 
-              <p class="text-sm text-gray-600 mb-4">
+              <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 line-clamp-2">
                 Versión optimizada para dispositivos móviles. Disfruta de tus
                 contenidos favoritos en cualquier lugar.
               </p>
 
-              <div class="flex space-x-3">
+              <div class="flex space-x-2 sm:space-x-3">
                 <a
                   href="https://github.com/Argon69/xenontechmagis/raw/refs/heads/main/magis/mgsMob_5.6.3_f620e598_20240321_180_release_jiagu.apk"
-                  class="download-btn flex-1 text-center px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700 transition-colors"
+                  class="download-btn flex-1 text-center px-3 sm:px-4 py-2 bg-purple-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-purple-700 transition-colors"
                 >
                   Descargar
                 </a>
-                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50">
-                  <i class="fa-regular fa-heart"></i>
+                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 flex-shrink-0">
+                  <i class="fa-regular fa-heart text-xs sm:text-sm"></i>
                 </button>
               </div>
             </div>
@@ -329,23 +344,23 @@
               <img
                 src="https://placehold.co/600x350/2563EB/FFFFFF?text=Office+365"
                 alt="Office 365"
-                class="w-full h-48 object-cover"
+                class="w-full h-40 sm:h-48 object-cover"
               />
             </div>
-            <div class="p-5">
+            <div class="p-4 sm:p-5">
               <div class="flex items-center mb-3">
-                <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-4">
-                  <i class="fa-solid fa-file-word text-white text-lg"></i>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-3 sm:mr-4">
+                  <i class="fa-solid fa-file-word text-white text-sm sm:text-lg"></i>
                 </div>
-                <div>
-                  <h3 class="text-lg font-semibold text-gray-800">
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-base sm:text-lg font-semibold text-gray-800 truncate">
                     Office 365
                   </h3>
-                  <p class="text-sm text-gray-500">XEEN Services</p>
+                  <p class="text-xs sm:text-sm text-gray-500">XEEN Services</p>
                 </div>
               </div>
 
-              <div class="flex items-center text-sm mb-3">
+              <div class="flex items-center text-xs sm:text-sm mb-3">
                 <div class="flex items-center text-yellow-400">
                   <i class="fa-solid fa-star"></i>
                   <i class="fa-solid fa-star"></i>
@@ -358,19 +373,19 @@
                 <span class="text-gray-500">4 GB</span>
               </div>
 
-              <p class="text-sm text-gray-600 mb-4">
+              <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 line-clamp-2">
                 Suite completa de Office 365. Incluye instalador y activador.
               </p>
 
-              <div class="flex space-x-3">
+              <div class="flex space-x-2 sm:space-x-3">
                 <a
                   href="https://drive.google.com/file/d/1VINHl1E3fqkWYdJpj3Nble5NGNjmFhui/view?usp=sharing"
-                  class="download-btn flex-1 text-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                  class="download-btn flex-1 text-center px-3 sm:px-4 py-2 bg-blue-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   Descargar
                 </a>
-                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50">
-                  <i class="fa-regular fa-heart"></i>
+                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 flex-shrink-0">
+                  <i class="fa-regular fa-heart text-xs sm:text-sm"></i>
                 </button>
               </div>
             </div>
@@ -382,23 +397,23 @@
               <img
                 src="https://placehold.co/600x350/10B981/FFFFFF?text=Movavi+Video+Editor"
                 alt="Movavi Video Editor"
-                class="w-full h-48 object-cover"
+                class="w-full h-40 sm:h-48 object-cover"
               />
             </div>
-            <div class="p-5">
+            <div class="p-4 sm:p-5">
               <div class="flex items-center mb-3">
-                <div class="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-4">
-                  <i class="fa-solid fa-film text-white text-lg"></i>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-3 sm:mr-4">
+                  <i class="fa-solid fa-film text-white text-sm sm:text-lg"></i>
                 </div>
-                <div>
-                  <h3 class="text-lg font-semibold text-gray-800">
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-base sm:text-lg font-semibold text-gray-800 truncate">
                     Movavi Video Editor
                   </h3>
-                  <p class="text-sm text-gray-500">XEEN Services</p>
+                  <p class="text-xs sm:text-sm text-gray-500">XEEN Services</p>
                 </div>
               </div>
 
-              <div class="flex items-center text-sm mb-3">
+              <div class="flex items-center text-xs sm:text-sm mb-3">
                 <div class="flex items-center text-yellow-400">
                   <i class="fa-solid fa-star"></i>
                   <i class="fa-solid fa-star"></i>
@@ -411,19 +426,19 @@
                 <span class="text-gray-500">1.8 GB</span>
               </div>
 
-              <p class="text-sm text-gray-600 mb-4">
+              <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 line-clamp-2">
                 Editor de video profesional. Crea videos impresionantes con efectos, transiciones y más.
               </p>
 
-              <div class="flex space-x-3">
+              <div class="flex space-x-2 sm:space-x-3">
                 <a
                   href="https://drive.google.com/file/d/17DDPkcP2cHpJMO8MNk5DcEJ5YYPvORNJ/view?usp=drive_link"
-                  class="download-btn flex-1 text-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors"
+                  class="download-btn flex-1 text-center px-3 sm:px-4 py-2 bg-green-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-green-700 transition-colors"
                 >
                   Descargar
                 </a>
-                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50">
-                  <i class="fa-regular fa-heart"></i>
+                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 flex-shrink-0">
+                  <i class="fa-regular fa-heart text-xs sm:text-sm"></i>
                 </button>
               </div>
             </div>
@@ -437,30 +452,30 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-50 border-t border-gray-200 mt-8">
-      <div class="max-w-7xl mx-auto px-4 py-8">
+    <footer class="bg-gray-50 border-t border-gray-200 mt-6 sm:mt-8">
+      <div class="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-8">
         <div class="flex flex-col md:flex-row md:justify-between">
           <div class="mb-6 md:mb-0">
-            <div class="flex items-center space-x-3 mb-4">
-              <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span class="text-sm font-bold text-white">X</span>
+            <div class="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
+              <div class="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center flex-shrink-0">
+                <span class="text-xs sm:text-sm font-bold text-white">X</span>
               </div>
-              <span class="text-lg font-bold text-gray-800">XEEN STORE</span>
+              <span class="text-base sm:text-lg font-bold text-gray-800">XEEN STORE</span>
             </div>
-            <p class="text-sm text-gray-600 max-w-md">
+            <p class="text-xs sm:text-sm text-gray-600 max-w-md">
               Tu tienda de aplicaciones y servicios premium. Todos los derechos
               reservados © 2023
             </p>
           </div>
 
-          <div class="grid grid-cols-2 gap-8 sm:grid-cols-3">
+          <div class="grid grid-cols-2 gap-6 sm:gap-8 sm:grid-cols-3">
             <div>
-              <h3 class="text-sm font-semibold text-gray-800 mb-3">Explorar</h3>
-              <ul class="space-y-2">
+              <h3 class="text-xs sm:text-sm font-semibold text-gray-800 mb-2 sm:mb-3">Explorar</h3>
+              <ul class="space-y-1 sm:space-y-2">
                 <li>
                   <a
                     href="#"
-                    class="text-sm text-gray-600 hover:text-primary-600"
+                    class="text-xs sm:text-sm text-gray-600 hover:text-primary-600"
                   >
                     Apps
                   </a>
@@ -468,7 +483,7 @@
                 <li>
                   <a
                     href="#"
-                    class="text-sm text-gray-600 hover:text-primary-600"
+                    class="text-xs sm:text-sm text-gray-600 hover:text-primary-600"
                   >
                     Juegos
                   </a>
@@ -476,7 +491,7 @@
                 <li>
                   <a
                     href="#"
-                    class="text-sm text-gray-600 hover:text-primary-600"
+                    class="text-xs sm:text-sm text-gray-600 hover:text-primary-600"
                   >
                     Películas
                   </a>
@@ -485,14 +500,14 @@
             </div>
 
             <div>
-              <h3 class="text-sm font-semibold text-gray-800 mb-3">
+              <h3 class="text-xs sm:text-sm font-semibold text-gray-800 mb-2 sm:mb-3">
                 Información
               </h3>
-              <ul class="space-y-2">
+              <ul class="space-y-1 sm:space-y-2">
                 <li>
                   <a
                     href="#"
-                    class="text-sm text-gray-600 hover:text-primary-600"
+                    class="text-xs sm:text-sm text-gray-600 hover:text-primary-600"
                   >
                     Acerca de
                   </a>
@@ -500,7 +515,7 @@
                 <li>
                   <a
                     href="#"
-                    class="text-sm text-gray-600 hover:text-primary-600"
+                    class="text-xs sm:text-sm text-gray-600 hover:text-primary-600"
                   >
                     Contacto
                   </a>
@@ -508,7 +523,7 @@
                 <li>
                   <a
                     href="#"
-                    class="text-sm text-gray-600 hover:text-primary-600"
+                    class="text-xs sm:text-sm text-gray-600 hover:text-primary-600"
                   >
                     Blog
                   </a>
@@ -516,13 +531,13 @@
               </ul>
             </div>
 
-            <div>
-              <h3 class="text-sm font-semibold text-gray-800 mb-3">Legal</h3>
-              <ul class="space-y-2">
+            <div class="col-span-2 sm:col-span-1">
+              <h3 class="text-xs sm:text-sm font-semibold text-gray-800 mb-2 sm:mb-3">Legal</h3>
+              <ul class="space-y-1 sm:space-y-2">
                 <li>
                   <a
                     href="#"
-                    class="text-sm text-gray-600 hover:text-primary-600"
+                    class="text-xs sm:text-sm text-gray-600 hover:text-primary-600"
                   >
                     Términos
                   </a>
@@ -530,7 +545,7 @@
                 <li>
                   <a
                     href="#"
-                    class="text-sm text-gray-600 hover:text-primary-600"
+                    class="text-xs sm:text-sm text-gray-600 hover:text-primary-600"
                   >
                     Privacidad
                   </a>
@@ -540,26 +555,26 @@
           </div>
         </div>
 
-        <div class="border-t border-gray-200 mt-8 pt-6 flex flex-col md:flex-row md:justify-between md:items-center">
-          <p class="text-xs text-gray-600">
+        <div class="border-t border-gray-200 mt-6 sm:mt-8 pt-4 sm:pt-6 flex flex-col md:flex-row md:justify-between md:items-center">
+          <p class="text-xs text-gray-600 mb-3 md:mb-0">
             © 2023 XEEN STORE BY NIXON. Todos los derechos reservados.
           </p>
-          <div class="flex space-x-4 mt-4 md:mt-0">
+          <div class="flex space-x-3 sm:space-x-4">
             <a
               href="#"
-              class="text-gray-600 hover:text-primary-600"
+              class="text-gray-600 hover:text-primary-600 text-sm"
             >
               <i class="fab fa-facebook-f"></i>
             </a>
             <a
               href="#"
-              class="text-gray-600 hover:text-primary-600"
+              class="text-gray-600 hover:text-primary-600 text-sm"
             >
               <i class="fab fa-twitter"></i>
             </a>
             <a
               href="#"
-              class="text-gray-600 hover:text-primary-600"
+              class="text-gray-600 hover:text-primary-600 text-sm"
             >
               <i class="fab fa-instagram"></i>
             </a>
@@ -572,16 +587,15 @@
       // Search functionality
       document.addEventListener("DOMContentLoaded", function () {
         const searchInput = document.getElementById("search-input");
+        const mobileSearchInput = document.getElementById("mobile-search-input");
         const appsContainer = document.getElementById("apps-container");
         const appCards = appsContainer.querySelectorAll(".app-card");
 
-        searchInput.addEventListener("input", function () {
-          const searchTerm = this.value.toLowerCase();
-
+        function handleSearch(searchTerm) {
           appCards.forEach((card) => {
             const appName = card.querySelector("h3").textContent.toLowerCase();
             const appDescription = card
-              .querySelector("p.text-sm.text-gray-600")
+              .querySelector("p.text-xs.text-gray-600, p.text-sm.text-gray-600")
               .textContent.toLowerCase();
 
             if (appName.includes(searchTerm) || appDescription.includes(searchTerm)) {
@@ -594,7 +608,21 @@
               card.style.display = "none";
             }
           });
-        });
+        }
+
+        if (searchInput) {
+          searchInput.addEventListener("input", function () {
+            const searchTerm = this.value.toLowerCase();
+            handleSearch(searchTerm);
+          });
+        }
+
+        if (mobileSearchInput) {
+          mobileSearchInput.addEventListener("input", function () {
+            const searchTerm = this.value.toLowerCase();
+            handleSearch(searchTerm);
+          });
+        }
 
         // Category tabs
         const categoryTabs = document.querySelectorAll(".category-tab");
