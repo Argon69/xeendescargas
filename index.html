@@ -190,10 +190,6 @@
 
           <!-- User Menu -->
           <div class="flex items-center space-x-3">
-            <button id="favorites-btn" class="relative p-2.5 rounded-lg text-gray-700 hover:bg-gray-100 transition-all group">
-              <i class="fa-regular fa-heart text-lg"></i>
-              <span class="absolute -top-1 -right-1 w-5 h-5 bg-black text-white text-xs font-bold rounded-full flex items-center justify-center opacity-0 transition-opacity" id="fav-counter">0</span>
-            </button>
             <button id="menu-btn" class="p-2.5 rounded-lg text-gray-700 hover:bg-gray-100 transition-all">
               <i class="fa-solid fa-bars text-lg"></i>
             </button>
@@ -363,92 +359,50 @@
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
         >
           <!-- Xuper (MagisTV) Card - Smart TV/Android TV/Fire TV Stick -->
-          <div class="app-card bg-white rounded-xl shadow-sm overflow-hidden" data-category="streaming">
-            <div class="aspect-w-16 aspect-h-9 bg-gray-100 relative">
-              <img
-                src="https://placehold.co/600x350/6366F1/FFFFFF?text=Xuper+TV"
-                alt="Xuper TV"
-                class="w-full h-40 sm:h-48 object-cover"
-              />
-              <div class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
-                Oficial
-              </div>
+          <div class="app-card rounded-2xl overflow-hidden relative" data-category="streaming">
+            <span class="badge">OFICIAL</span>
+            <div class="bg-gradient-to-br from-indigo-500 to-purple-600 h-40 flex items-center justify-center">
+              <i class="fa-solid fa-tv text-white text-6xl opacity-90"></i>
             </div>
-            <div class="p-4 sm:p-5">
-              <div class="flex items-center mb-3">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-indigo-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-3 sm:mr-4">
-                  <i class="fa-solid fa-tv text-white text-sm sm:text-lg"></i>
-                </div>
-                <div class="min-w-0 flex-1">
-                  <h3 class="text-base sm:text-lg font-semibold text-gray-800">Xuper TV</h3>
-                  <p class="text-xs sm:text-sm text-gray-500">Antes: MagisTV</p>
-                </div>
-              </div>
-
-              <p class="text-xs sm:text-sm text-gray-600 mb-2">
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-gray-900 mb-1">Xuper TV</h3>
+              <p class="text-sm text-gray-500 mb-3">Streaming • Antes: MagisTV</p>
+              <p class="text-sm text-gray-600 mb-2">
                 <strong>Para:</strong> Smart TV, Android TV y Fire TV Stick
               </p>
-              <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 line-clamp-2">
+              <p class="text-sm text-gray-600 mb-4 line-clamp-2">
                 La mejor aplicación para disfrutar de tus canales favoritos. Descarga desde servidores oficiales.
               </p>
-
-              <div class="flex space-x-2 sm:space-x-3">
-                <a
-                  href="https://app.lat-servicio.tv/app/XPR_A-RAMO.apk"
-                  class="download-btn flex-1 text-center px-3 sm:px-4 py-2 bg-indigo-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors"
-                >
-                  Descargar
-                </a>
-                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 flex-shrink-0">
-                  <i class="fa-regular fa-heart text-xs sm:text-sm"></i>
-                </button>
-              </div>
+              <a
+                href="https://app.lat-servicio.tv/app/XPR_A-RAMO.apk"
+                class="download-btn w-full text-center block px-4 py-2.5 bg-black text-white text-sm font-semibold rounded-xl hover:bg-gray-800 transition-colors"
+              >
+                Descargar
+              </a>
             </div>
           </div>
 
           <!-- Xuper Mobile (MagisTV Móvil) Card - Android celular/tablet -->
-          <div class="app-card bg-white rounded-xl shadow-sm overflow-hidden" data-category="streaming">
-            <div class="aspect-w-16 aspect-h-9 bg-gray-100 relative">
-              <img
-                src="https://placehold.co/600x350/9333EA/FFFFFF?text=Xuper+Mobile"
-                alt="Xuper Mobile"
-                class="w-full h-40 sm:h-48 object-cover"
-              />
-              <div class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
-                Oficial
-              </div>
+          <div class="app-card rounded-2xl overflow-hidden relative" data-category="streaming">
+            <span class="badge">OFICIAL</span>
+            <div class="bg-gradient-to-br from-purple-500 to-pink-600 h-40 flex items-center justify-center">
+              <i class="fa-solid fa-mobile-screen text-white text-6xl opacity-90"></i>
             </div>
-            <div class="p-4 sm:p-5">
-              <div class="flex items-center mb-3">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-3 sm:mr-4">
-                  <i class="fa-solid fa-mobile-screen text-white text-sm sm:text-lg"></i>
-                </div>
-                <div class="min-w-0 flex-1">
-                  <h3 class="text-base sm:text-lg font-semibold text-gray-800">
-                    Xuper Mobile
-                  </h3>
-                  <p class="text-xs sm:text-sm text-gray-500">Antes: MagisTV Móvil</p>
-                </div>
-              </div>
-
-              <p class="text-xs sm:text-sm text-gray-600 mb-2">
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-gray-900 mb-1">Xuper Mobile</h3>
+              <p class="text-sm text-gray-500 mb-3">Streaming • Antes: MagisTV Móvil</p>
+              <p class="text-sm text-gray-600 mb-2">
                 <strong>Para:</strong> Android celular y tablet
               </p>
-              <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 line-clamp-2">
+              <p class="text-sm text-gray-600 mb-4 line-clamp-2">
                 Versión optimizada para móviles. Disfruta de tus contenidos favoritos en cualquier lugar.
               </p>
-
-              <div class="flex space-x-2 sm:space-x-3">
-                <a
-                  href="https://app.lat-servicio.app/app/XPRmob_A-RAMO.apk"
-                  class="download-btn flex-1 text-center px-3 sm:px-4 py-2 bg-purple-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-purple-700 transition-colors"
-                >
-                  Descargar
-                </a>
-                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 flex-shrink-0">
-                  <i class="fa-regular fa-heart text-xs sm:text-sm"></i>
-                </button>
-              </div>
+              <a
+                href="https://app.lat-servicio.app/app/XPRmob_A-RAMO.apk"
+                class="download-btn w-full text-center block px-4 py-2.5 bg-black text-white text-sm font-semibold rounded-xl hover:bg-gray-800 transition-colors"
+              >
+                Descargar
+              </a>
             </div>
           </div>
 
@@ -461,21 +415,19 @@
             <div class="p-5">
               <h3 class="text-lg font-bold text-gray-900 mb-1">Office 365</h3>
               <p class="text-sm text-gray-500 mb-3">Productividad</p>
+              <p class="text-sm text-gray-600 mb-2">
+                <strong>Para:</strong> Windows 10/11 (64-bit)
+              </p>
               <p class="text-sm text-gray-600 mb-4 line-clamp-2">
                 Suite completa de Office con todas las herramientas.
               </p>
-              <div class="flex gap-2">
-                <a
-                  href="https://drive.google.com/file/d/1VINHl1E3fqkWYdJpj3Nble5NGNjmFhui/view?usp=sharing"
-                  target="_blank"
-                  class="download-btn flex-1 text-center px-4 py-2.5 bg-black text-white text-sm font-semibold rounded-xl hover:bg-gray-800 transition-colors"
-                >
-                  Descargar
-                </a>
-                <button class="fav-btn p-2.5 rounded-xl border border-gray-200 text-gray-500 hover:text-red-500 hover:bg-gray-50 transition-colors">
-                  <i class="fa-regular fa-heart"></i>
-                </button>
-              </div>
+              <a
+                href="https://drive.google.com/file/d/1VINHl1E3fqkWYdJpj3Nble5NGNjmFhui/view?usp=sharing"
+                target="_blank"
+                class="download-btn w-full text-center block px-4 py-2.5 bg-black text-white text-sm font-semibold rounded-xl hover:bg-gray-800 transition-colors"
+              >
+                Descargar
+              </a>
             </div>
           </div>
 
@@ -487,21 +439,19 @@
             <div class="p-5">
               <h3 class="text-lg font-bold text-gray-900 mb-1">Movavi Video Editor</h3>
               <p class="text-sm text-gray-500 mb-3">Multimedia</p>
+              <p class="text-sm text-gray-600 mb-2">
+                <strong>Para:</strong> Windows 7/8/10/11
+              </p>
               <p class="text-sm text-gray-600 mb-4 line-clamp-2">
                 Editor de video profesional con efectos avanzados.
               </p>
-              <div class="flex gap-2">
-                <a
-                  href="https://drive.google.com/file/d/17DDPkcP2cHpJMO8MNk5DcEJ5YYPvORNJ/view?usp=drive_link"
-                  target="_blank"
-                  class="download-btn flex-1 text-center px-4 py-2.5 bg-black text-white text-sm font-semibold rounded-xl hover:bg-gray-800 transition-colors"
-                >
-                  Descargar
-                </a>
-                <button class="fav-btn p-2.5 rounded-xl border border-gray-200 text-gray-500 hover:text-red-500 hover:bg-gray-50 transition-colors">
-                  <i class="fa-regular fa-heart"></i>
-                </button>
-              </div>
+              <a
+                href="https://drive.google.com/file/d/17DDPkcP2cHpJMO8MNk5DcEJ5YYPvORNJ/view?usp=drive_link"
+                target="_blank"
+                class="download-btn w-full text-center block px-4 py-2.5 bg-black text-white text-sm font-semibold rounded-xl hover:bg-gray-800 transition-colors"
+              >
+                Descargar
+              </a>
             </div>
           </div>
 
@@ -514,21 +464,19 @@
             <div class="p-5">
               <h3 class="text-lg font-bold text-gray-900 mb-1">Pack Optimización Windows</h3>
               <p class="text-sm text-gray-500 mb-3">Windows</p>
+              <p class="text-sm text-gray-600 mb-2">
+                <strong>Para:</strong> Windows 10/11
+              </p>
               <p class="text-sm text-gray-600 mb-4 line-clamp-2">
                 Herramientas completas para optimizar Windows.
               </p>
-              <div class="flex gap-2">
-                <a
-                  href="https://www.mediafire.com/file/5rd8m20uwr3s6pf/Post-Install.zip/file"
-                  target="_blank"
-                  class="download-btn flex-1 text-center px-4 py-2.5 bg-black text-white text-sm font-semibold rounded-xl hover:bg-gray-800 transition-colors"
-                >
-                  Descargar Pack
-                </a>
-                <button class="fav-btn p-2.5 rounded-xl border border-gray-200 text-gray-500 hover:text-red-500 hover:bg-gray-50 transition-colors">
-                  <i class="fa-regular fa-heart"></i>
-                </button>
-              </div>
+              <a
+                href="https://www.mediafire.com/file/5rd8m20uwr3s6pf/Post-Install.zip/file"
+                target="_blank"
+                class="download-btn w-full text-center block px-4 py-2.5 bg-black text-white text-sm font-semibold rounded-xl hover:bg-gray-800 transition-colors"
+              >
+                Descargar Pack
+              </a>
             </div>
           </div>
 
@@ -605,8 +553,6 @@
 
     <script>
       // Global state
-      let favoritesCount = 0;
-      const favorites = new Set();
       let currentFilter = 'all';
 
       // Search functionality
@@ -791,91 +737,6 @@
           
           // Remove no results message
           removeNoResultsMessage();
-        }
-
-        // Favorites functionality
-        const favoritesBtn = document.getElementById("favorites-btn");
-        const favoriteButtons = document.querySelectorAll(".fav-btn");
-        const favCounter = document.getElementById("fav-counter");
-
-        favoritesBtn.addEventListener("click", function () {
-          if (favoritesCount === 0) {
-            Swal.fire({
-              title: "Favoritos",
-              text: "No tienes aplicaciones favoritas todavía",
-              icon: "info",
-              confirmButtonColor: "#6366f1",
-              confirmButtonText: "Entendido",
-            });
-          } else {
-            Swal.fire({
-              title: "Mis Favoritos",
-              html: `Tienes <strong>${favoritesCount}</strong> aplicaciones marcadas como favoritas`,
-              icon: "success",
-              confirmButtonColor: "#6366f1",
-              confirmButtonText: "Genial",
-            });
-          }
-        });
-
-        // Individual favorite buttons
-        favoriteButtons.forEach((btn) => {
-          btn.addEventListener("click", function (e) {
-            e.preventDefault();
-            const card = this.closest(".app-card");
-            const appName = card.querySelector("h3").textContent;
-            const heartIcon = this.querySelector("i");
-
-            if (favorites.has(appName)) {
-              favorites.delete(appName);
-              favoritesCount--;
-              heartIcon.classList.remove("fa-solid");
-              heartIcon.classList.add("fa-regular");
-              this.classList.remove("text-red-500");
-
-              Swal.fire({
-                title: "Eliminado",
-                text: `${appName} se eliminó de favoritos`,
-                icon: "info",
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true,
-              });
-            } else {
-              favorites.add(appName);
-              favoritesCount++;
-              heartIcon.classList.remove("fa-regular");
-              heartIcon.classList.add("fa-solid");
-              this.classList.add("text-red-500");
-
-              Swal.fire({
-                title: "¡Agregado!",
-                text: `${appName} se agregó a favoritos`,
-                icon: "success",
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true,
-              });
-            }
-
-            // Update counter badge
-            updateFavoritesCounter();
-          });
-        });
-
-        function updateFavoritesCounter() {
-          favCounter.textContent = favoritesCount;
-          if (favoritesCount > 0) {
-            favCounter.classList.remove("opacity-0");
-            favCounter.classList.add("opacity-100");
-          } else {
-            favCounter.classList.remove("opacity-100");
-            favCounter.classList.add("opacity-0");
-          }
         }
 
         function handleSearch(searchTerm) {
