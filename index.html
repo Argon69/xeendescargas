@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>XEEN STORE</title>
+    <meta name="description" content="XEEN STORE - Repositorio de descargas para aplicaciones de Windows y Android. By NIXON" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23000'/><text x='50' y='70' font-size='50' text-anchor='middle' fill='%23fff' font-family='system-ui' font-weight='900'>XN</text></svg>" />
+    <title>XEEN STORE - By NIXON</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
@@ -18,6 +22,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/framer-motion@10/dist/framer-motion.js"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -51,35 +56,48 @@
       };
     </script>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       body {
         font-family: "Inter", sans-serif;
-        background-color: #f9fafb;
+        background: #ffffff;
+        min-height: 100vh;
+        color: #1a1a1a;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
-      .app-card {
-        transition: all 0.3s ease;
-      }
-
-      .app-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
-          0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      }
-
-      .category-tab {
-        transition: all 0.2s ease;
+      main {
         position: relative;
       }
 
-      .category-tab.active::after {
-        content: "";
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: #6366f1;
-        border-radius: 1px;
+      .app-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        cursor: pointer;
+      }
+
+      .app-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        border-color: #d1d5db;
+      }
+
+      .category-chip {
+        transition: all 0.2s ease;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .category-chip.active {
+        background: #1a1a1a;
+        color: #ffffff;
       }
 
       .scrollbar-hide::-webkit-scrollbar {
@@ -90,21 +108,69 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
+
+      .header-shadow {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      }
+
+      .hero-section {
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      }
+
+      .sidebar-menu {
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .sidebar-menu.active {
+        transform: translateX(0);
+      }
+
+      .overlay {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .overlay.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        padding: 4px 10px;
+        background: #1a1a1a;
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: 600;
+        border-radius: 6px;
+        letter-spacing: 0.5px;
+      }
+
+      @media (max-width: 768px) {
+        .app-card:active {
+          transform: scale(0.98);
+        }
+      }
     </style>
   </head>
-  <body class="bg-gray-50">
+  <body>
     <!-- Header -->
-    <header class="sticky top-0 z-50 bg-white shadow-sm">
+    <header class="sticky top-0 z-50 bg-white header-shadow">
       <div class="max-w-7xl mx-auto">
         <div class="flex items-center justify-between px-3 sm:px-4 py-3">
           <!-- Logo -->
-          <div class="flex items-center space-x-2 sm:space-x-3">
-            <div
-              class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg"
-            >
-              <span class="text-lg sm:text-xl font-bold text-white">X</span>
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center">
+              <span class="text-lg font-black text-white">XN</span>
             </div>
-            <span class="text-lg sm:text-xl font-bold text-gray-800">XEEN STORE</span>
+            <div class="flex flex-col leading-tight">
+              <span class="text-lg font-bold text-gray-900">XEEN STORE</span>
+              <span class="text-xs text-gray-500 font-medium">Repositorio - By NIXON</span>
+            </div>
           </div>
 
           <!-- Search Bar -->
@@ -123,15 +189,13 @@
           </div>
 
           <!-- User Menu -->
-          <div class="flex items-center space-x-1 sm:space-x-4">
-            <button class="p-2 sm:p-2.5 rounded-full text-gray-600 hover:bg-gray-100 md:hidden">
-              <i class="fa-solid fa-magnifying-glass text-sm sm:text-base"></i>
+          <div class="flex items-center space-x-3">
+            <button id="favorites-btn" class="relative p-2.5 rounded-lg text-gray-700 hover:bg-gray-100 transition-all group">
+              <i class="fa-regular fa-heart text-lg"></i>
+              <span class="absolute -top-1 -right-1 w-5 h-5 bg-black text-white text-xs font-bold rounded-full flex items-center justify-center opacity-0 transition-opacity" id="fav-counter">0</span>
             </button>
-            <button class="p-2 sm:p-2.5 rounded-full text-gray-600 hover:bg-gray-100">
-              <i class="fa-regular fa-heart text-sm sm:text-base"></i>
-            </button>
-            <button class="p-2 sm:p-2.5 rounded-full text-gray-600 hover:bg-gray-100">
-              <i class="fa-solid fa-bars text-sm sm:text-base"></i>
+            <button id="menu-btn" class="p-2.5 rounded-lg text-gray-700 hover:bg-gray-100 transition-all">
+              <i class="fa-solid fa-bars text-lg"></i>
             </button>
           </div>
         </div>
@@ -152,6 +216,68 @@
         </div>
       </div>
     </header>
+
+    <!-- Sidebar Menu -->
+    <div id="menu-overlay" class="overlay fixed inset-0 bg-black/50 z-40"></div>
+    <aside id="sidebar-menu" class="sidebar-menu fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white z-50 overflow-y-auto shadow-2xl">
+      <div class="p-6">
+        <div class="flex items-center justify-between mb-8">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center">
+              <span class="text-lg font-black text-white">XN</span>
+            </div>
+            <div>
+              <h2 class="text-lg font-bold text-gray-900">XEEN STORE</h2>
+              <p class="text-xs text-gray-500">Repositorio</p>
+            </div>
+          </div>
+          <button id="close-menu" class="p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors">
+            <i class="fa-solid fa-xmark text-xl"></i>
+          </button>
+        </div>
+
+        <nav class="space-y-1">
+          <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-xl bg-black text-white font-semibold">
+            <i class="fa-solid fa-house text-lg"></i>
+            <span>Inicio</span>
+          </a>
+          <a href="#apps" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-gray-100 font-medium transition-colors">
+            <i class="fa-solid fa-grid-2 text-lg"></i>
+            <span>Aplicaciones</span>
+          </a>
+          <a href="#apps" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-gray-100 font-medium transition-colors">
+            <i class="fa-solid fa-gamepad text-lg"></i>
+            <span>Juegos</span>
+          </a>
+          <a href="#apps" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-gray-100 font-medium transition-colors">
+            <i class="fa-solid fa-wrench text-lg"></i>
+            <span>Herramientas</span>
+          </a>
+          <a href="#apps" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-gray-100 font-medium transition-colors">
+            <i class="fa-brands fa-windows text-lg"></i>
+            <span>Windows</span>
+          </a>
+        </nav>
+
+        <div class="mt-8 pt-6 border-t border-gray-200">
+          <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">Categorías</h3>
+          <div class="space-y-1">
+            <a href="#apps" class="flex items-center justify-between px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 text-sm transition-colors">
+              <span>Streaming</span>
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </a>
+            <a href="#apps" class="flex items-center justify-between px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 text-sm transition-colors">
+              <span>Multimedia</span>
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </a>
+            <a href="#apps" class="flex items-center justify-between px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 text-sm transition-colors">
+              <span>Productividad</span>
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
 
     <!-- Category Navigation -->
     <!-- <nav class="bg-white border-b border-gray-200 sticky top-16 z-40">
@@ -184,406 +310,290 @@
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
       <!-- Hero Banner -->
-      <section class="mb-6 sm:mb-8 animate__animated animate__fadeIn">
-        <div class="rounded-xl sm:rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg overflow-hidden">
-          <div class="md:flex">
-            <div class="p-4 sm:p-6 md:p-8 md:w-3/5">
-              <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">
-                MagisTV Premium Ultima version
+      <section class="mb-8">
+        <div class="rounded-2xl hero-section overflow-hidden">
+          <div class="md:flex items-center">
+            <div class="p-8 md:p-12 md:w-3/5">
+              <div class="inline-block px-3 py-1.5 bg-white/20 backdrop-blur-sm rounded-lg text-white text-xs font-semibold mb-4">
+                <i class="fa-solid fa-star mr-1"></i>DESTACADO
+              </div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+                MagisTV Premium
               </h2>
-              <p class="text-indigo-100 mb-4 sm:mb-6 text-sm sm:text-base">
-                Disfruta de miles de canales y contenido premium en tu dispositivo
-                favorito
+              <p class="text-white/90 mb-6 text-base leading-relaxed max-w-md">
+                Disfruta de miles de canales y contenido premium en tu dispositivo favorito.
               </p>
               <a
                 href="https://github.com/Argon69/xeendescargas/raw/refs/heads/main/signMagisTV_TG-RAMON.apk"
-                class="download-btn inline-flex items-center px-4 sm:px-5 py-2.5 sm:py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-indigo-50 transition-colors text-sm sm:text-base"
+                class="download-btn inline-flex items-center px-6 py-3 bg-white text-gray-900 font-semibold rounded-xl hover:bg-gray-50 transition-all shadow-lg"
               >
                 <i class="fa-solid fa-download mr-2"></i>
                 Descargar ahora
               </a>
             </div>
-            <div class="hidden md:block md:w-2/5">
-              <div class="h-full flex items-center justify-center p-6">
-                <img
-                  src="https://placehold.co/300x200/6366F1/FFFFFF?text=MagisTV"
-                  alt="MagisTV"
-                  class="rounded-xl shadow-lg max-h-48"
-                />
+            <div class="hidden md:flex md:w-2/5 items-center justify-center p-8">
+              <div class="bg-white/10 backdrop-blur-xl rounded-2xl p-8">
+                <i class="fa-solid fa-tv text-white text-8xl opacity-90"></i>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- Category Chips -->
+      <section class="mb-8">
+        <div class="flex overflow-x-auto scrollbar-hide gap-2 pb-2">
+          <button data-category="all" class="category-chip active flex-shrink-0 px-5 py-2.5 bg-black text-white text-sm font-medium rounded-full">
+            Todas
+          </button>
+          <button data-category="streaming" class="category-chip flex-shrink-0 px-5 py-2.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-full hover:bg-gray-200">
+            <i class="fa-solid fa-tv mr-1.5"></i>
+            Streaming
+          </button>
+          <button data-category="productivity" class="category-chip flex-shrink-0 px-5 py-2.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-full hover:bg-gray-200">
+            <i class="fa-solid fa-briefcase mr-1.5"></i>
+            Productividad
+          </button>
+          <button data-category="multimedia" class="category-chip flex-shrink-0 px-5 py-2.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-full hover:bg-gray-200">
+            <i class="fa-solid fa-film mr-1.5"></i>
+            Multimedia
+          </button>
+          <button data-category="windows" class="category-chip flex-shrink-0 px-5 py-2.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-full hover:bg-gray-200">
+            <i class="fa-brands fa-windows mr-1.5"></i>
+            Windows
+          </button>
+        </div>
+      </section>
+
       <!-- App Section -->
-      <section class="mb-8 sm:mb-10">
-        <div class="flex items-center justify-between mb-4 sm:mb-6">
-          <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Apps Populares</h2>
-          <a
-            href="#"
-            class="text-primary-600 font-medium text-xs sm:text-sm hover:underline"
-          >
-            Ver todas
-          </a>
+      <section class="mb-12" id="apps">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold text-gray-900">Aplicaciones</h2>
+          <button id="view-all-btn" class="text-sm text-gray-600 hover:text-gray-900 font-medium transition-colors">
+            Ver todas →
+          </button>
         </div>
 
         <div
           id="apps-container"
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4"
         >
           <!-- MagisTV Card -->
-          <div class="app-card bg-white rounded-xl shadow-sm overflow-hidden">
-            <div class="aspect-w-16 aspect-h-9 bg-gray-100">
-              <img
-                src="https://placehold.co/600x350/6366F1/FFFFFF?text=MagisTV"
-                alt="MagisTV"
-                class="w-full h-40 sm:h-48 object-cover"
-              />
+          <div class="app-card rounded-2xl overflow-hidden relative" data-category="streaming">
+            <span class="badge bg-orange-500">DESACTUALIZADA</span>
+            <div class="bg-gradient-to-br from-indigo-500 to-purple-600 h-40 flex items-center justify-center">
+              <i class="fa-solid fa-tv text-white text-6xl opacity-90"></i>
             </div>
-            <div class="p-4 sm:p-5">
-              <div class="flex items-center mb-3">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-indigo-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-3 sm:mr-4">
-                  <i class="fa-solid fa-tv text-white text-sm sm:text-lg"></i>
-                </div>
-                <div class="min-w-0 flex-1">
-                  <h3 class="text-base sm:text-lg font-semibold text-gray-800 truncate">MagisTV</h3>
-                  <p class="text-xs sm:text-sm text-gray-500">XEEN Services</p>
-                </div>
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-gray-900 mb-1">MagisTV</h3>
+              <div class="bg-yellow-50 border-l-2 border-yellow-500 px-3 py-2 mb-3 text-xs">
+                <p class="text-yellow-800 font-semibold"><i class="fa-solid fa-triangle-exclamation mr-1"></i>Versión antigua - Ahora es Xuper</p>
+                <p class="text-yellow-700 mt-1">Actualiza después de instalar. Versión actual próximamente.</p>
               </div>
-
-              <div class="flex items-center text-xs sm:text-sm mb-3">
-                <div class="flex items-center text-yellow-400">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star-half-stroke"></i>
-                </div>
-                <span class="ml-2 text-gray-600">4.8</span>
-                <span class="mx-2 text-gray-300">•</span>
-                <span class="text-gray-500">45 MB</span>
-              </div>
-
-              <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 line-clamp-2">
-                La mejor aplicación para disfrutar de tus canales favoritos en
-                cualquier momento.
+              <p class="text-sm text-gray-500 mb-3">Streaming • 45 MB</p>
+              <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+                Disfruta de miles de canales y contenido premium.
               </p>
-
-              <div class="flex space-x-2 sm:space-x-3">
+              <div class="flex gap-2">
                 <a
                   href="https://github.com/Argon69/xenontechmagis/raw/refs/heads/main/magis/signMagisTV_TG-MALL.apk"
-                  class="download-btn flex-1 text-center px-3 sm:px-4 py-2 bg-indigo-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors"
+                  class="download-btn flex-1 text-center px-4 py-2.5 bg-black text-white text-sm font-semibold rounded-xl hover:bg-gray-800 transition-colors"
                 >
                   Descargar
                 </a>
-                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 flex-shrink-0">
-                  <i class="fa-regular fa-heart text-xs sm:text-sm"></i>
+                <button class="fav-btn p-2.5 rounded-xl border border-gray-200 text-gray-500 hover:text-red-500 hover:bg-gray-50 transition-colors">
+                  <i class="fa-regular fa-heart"></i>
                 </button>
               </div>
             </div>
           </div>
 
           <!-- MagisTV Mobile Card -->
-          <div class="app-card bg-white rounded-xl shadow-sm overflow-hidden">
-            <div class="aspect-w-16 aspect-h-9 bg-gray-100">
-              <img
-                src="https://placehold.co/600x350/9333EA/FFFFFF?text=MagisTV+Móvil"
-                alt="MagisTV Mobile"
-                class="w-full h-40 sm:h-48 object-cover"
-              />
+          <div class="app-card rounded-2xl overflow-hidden relative" data-category="streaming">
+            <span class="badge bg-orange-500">DESACTUALIZADA</span>
+            <div class="bg-gradient-to-br from-purple-500 to-pink-600 h-40 flex items-center justify-center">
+              <i class="fa-solid fa-mobile-screen text-white text-6xl opacity-90"></i>
             </div>
-            <div class="p-4 sm:p-5">
-              <div class="flex items-center mb-3">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-3 sm:mr-4">
-                  <i class="fa-solid fa-mobile-screen text-white text-sm sm:text-lg"></i>
-                </div>
-                <div class="min-w-0 flex-1">
-                  <h3 class="text-base sm:text-lg font-semibold text-gray-800 truncate">
-                    MagisTV Móvil
-                  </h3>
-                  <p class="text-xs sm:text-sm text-gray-500">XEEN Services</p>
-                </div>
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-gray-900 mb-1">MagisTV Móvil</h3>
+              <div class="bg-yellow-50 border-l-2 border-yellow-500 px-3 py-2 mb-3 text-xs">
+                <p class="text-yellow-800 font-semibold"><i class="fa-solid fa-triangle-exclamation mr-1"></i>Versión antigua - Ahora es Xuper</p>
+                <p class="text-yellow-700 mt-1">Actualiza después de instalar. Versión actual próximamente.</p>
               </div>
-
-              <div class="flex items-center text-xs sm:text-sm mb-3">
-                <div class="flex items-center text-yellow-400">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star-half-stroke"></i>
-                </div>
-                <span class="ml-2 text-gray-600">4.7</span>
-                <span class="mx-2 text-gray-300">•</span>
-                <span class="text-gray-500">38 MB</span>
-              </div>
-
-              <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 line-clamp-2">
-                Versión optimizada para dispositivos móviles. Disfruta de tus
-                contenidos favoritos en cualquier lugar.
+              <p class="text-sm text-gray-500 mb-3">Streaming • 38 MB</p>
+              <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+                Versión optimizada para dispositivos móviles.
               </p>
-
-              <div class="flex space-x-2 sm:space-x-3">
+              <div class="flex gap-2">
                 <a
                   href="https://github.com/Argon69/xenontechmagis/raw/refs/heads/main/magis/mgsMob_5.6.3_f620e598_20240321_180_release_jiagu.apk"
-                  class="download-btn flex-1 text-center px-3 sm:px-4 py-2 bg-purple-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-purple-700 transition-colors"
+                  class="download-btn flex-1 text-center px-4 py-2.5 bg-black text-white text-sm font-semibold rounded-xl hover:bg-gray-800 transition-colors"
                 >
                   Descargar
                 </a>
-                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 flex-shrink-0">
-                  <i class="fa-regular fa-heart text-xs sm:text-sm"></i>
+                <button class="fav-btn p-2.5 rounded-xl border border-gray-200 text-gray-500 hover:text-red-500 hover:bg-gray-50 transition-colors">
+                  <i class="fa-regular fa-heart"></i>
                 </button>
               </div>
             </div>
           </div>
 
           <!-- Office 365 Card -->
-          <div class="app-card bg-white rounded-xl shadow-sm overflow-hidden">
-            <div class="aspect-w-16 aspect-h-9 bg-gray-100">
-              <img
-                src="https://placehold.co/600x350/2563EB/FFFFFF?text=Office+365"
-                alt="Office 365"
-                class="w-full h-40 sm:h-48 object-cover"
-              />
+          <div class="app-card rounded-2xl overflow-hidden relative" data-category="productivity">
+            <span class="badge"><i class="fa-solid fa-star mr-1"></i>TOP</span>
+            <div class="bg-gradient-to-br from-blue-500 to-blue-700 h-40 flex items-center justify-center">
+              <i class="fa-solid fa-file-word text-white text-6xl opacity-90"></i>
             </div>
-            <div class="p-4 sm:p-5">
-              <div class="flex items-center mb-3">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-3 sm:mr-4">
-                  <i class="fa-solid fa-file-word text-white text-sm sm:text-lg"></i>
-                </div>
-                <div class="min-w-0 flex-1">
-                  <h3 class="text-base sm:text-lg font-semibold text-gray-800 truncate">
-                    Office 365
-                  </h3>
-                  <p class="text-xs sm:text-sm text-gray-500">XEEN Services</p>
-                </div>
-              </div>
-
-              <div class="flex items-center text-xs sm:text-sm mb-3">
-                <div class="flex items-center text-yellow-400">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-                <span class="ml-2 text-gray-600">4.9</span>
-                <span class="mx-2 text-gray-300">•</span>
-                <span class="text-gray-500">4 GB</span>
-              </div>
-
-              <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 line-clamp-2">
-                Suite completa de Office 365. Incluye instalador y activador.
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-gray-900 mb-1">Office 365</h3>
+              <p class="text-sm text-gray-500 mb-3">Productividad • 4 GB</p>
+              <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+                Suite completa de Office con todas las herramientas.
               </p>
-
-              <div class="flex space-x-2 sm:space-x-3">
+              <div class="flex gap-2">
                 <a
                   href="https://drive.google.com/file/d/1VINHl1E3fqkWYdJpj3Nble5NGNjmFhui/view?usp=sharing"
-                  class="download-btn flex-1 text-center px-3 sm:px-4 py-2 bg-blue-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                  target="_blank"
+                  class="download-btn flex-1 text-center px-4 py-2.5 bg-black text-white text-sm font-semibold rounded-xl hover:bg-gray-800 transition-colors"
                 >
                   Descargar
                 </a>
-                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 flex-shrink-0">
-                  <i class="fa-regular fa-heart text-xs sm:text-sm"></i>
+                <button class="fav-btn p-2.5 rounded-xl border border-gray-200 text-gray-500 hover:text-red-500 hover:bg-gray-50 transition-colors">
+                  <i class="fa-regular fa-heart"></i>
                 </button>
               </div>
             </div>
           </div>
 
           <!-- Movavi Video Editor Card -->
-          <div class="app-card bg-white rounded-xl shadow-sm overflow-hidden">
-            <div class="aspect-w-16 aspect-h-9 bg-gray-100">
-              <img
-                src="https://placehold.co/600x350/10B981/FFFFFF?text=Movavi+Video+Editor"
-                alt="Movavi Video Editor"
-                class="w-full h-40 sm:h-48 object-cover"
-              />
+          <div class="app-card rounded-2xl overflow-hidden relative" data-category="multimedia">
+            <div class="bg-gradient-to-br from-emerald-500 to-teal-600 h-40 flex items-center justify-center">
+              <i class="fa-solid fa-film text-white text-6xl opacity-90"></i>
             </div>
-            <div class="p-4 sm:p-5">
-              <div class="flex items-center mb-3">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-3 sm:mr-4">
-                  <i class="fa-solid fa-film text-white text-sm sm:text-lg"></i>
-                </div>
-                <div class="min-w-0 flex-1">
-                  <h3 class="text-base sm:text-lg font-semibold text-gray-800 truncate">
-                    Movavi Video Editor
-                  </h3>
-                  <p class="text-xs sm:text-sm text-gray-500">XEEN Services</p>
-                </div>
-              </div>
-
-              <div class="flex items-center text-xs sm:text-sm mb-3">
-                <div class="flex items-center text-yellow-400">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-                <span class="ml-2 text-gray-600">4.0</span>
-                <span class="mx-2 text-gray-300">•</span>
-                <span class="text-gray-500">1.8 GB</span>
-              </div>
-
-              <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 line-clamp-2">
-                Editor de video profesional. Crea videos impresionantes con efectos, transiciones y más.
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-gray-900 mb-1">Movavi Video Editor</h3>
+              <p class="text-sm text-gray-500 mb-3">Multimedia • 1.8 GB</p>
+              <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+                Editor de video profesional con efectos avanzados.
               </p>
-
-              <div class="flex space-x-2 sm:space-x-3">
+              <div class="flex gap-2">
                 <a
                   href="https://drive.google.com/file/d/17DDPkcP2cHpJMO8MNk5DcEJ5YYPvORNJ/view?usp=drive_link"
-                  class="download-btn flex-1 text-center px-3 sm:px-4 py-2 bg-green-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-green-700 transition-colors"
+                  target="_blank"
+                  class="download-btn flex-1 text-center px-4 py-2.5 bg-black text-white text-sm font-semibold rounded-xl hover:bg-gray-800 transition-colors"
                 >
                   Descargar
                 </a>
-                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 flex-shrink-0">
-                  <i class="fa-regular fa-heart text-xs sm:text-sm"></i>
+                <button class="fav-btn p-2.5 rounded-xl border border-gray-200 text-gray-500 hover:text-red-500 hover:bg-gray-50 transition-colors">
+                  <i class="fa-regular fa-heart"></i>
                 </button>
               </div>
             </div>
           </div>
 
-          
+          <!-- Windows Optimization Resources Card -->
+          <div class="app-card rounded-2xl overflow-hidden relative" data-category="windows">
+            <span class="badge">NUEVO</span>
+            <div class="bg-gradient-to-br from-cyan-500 to-blue-600 h-40 flex items-center justify-center">
+              <i class="fa-brands fa-windows text-white text-6xl opacity-90"></i>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-gray-900 mb-1">Pack Optimización Windows</h3>
+              <p class="text-sm text-gray-500 mb-3">Windows • 250 MB</p>
+              <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+                Herramientas completas para optimizar Windows.
+              </p>
+              <div class="flex gap-2">
+                <a
+                  href="https://www.mediafire.com/file/5rd8m20uwr3s6pf/Post-Install.zip/file"
+                  target="_blank"
+                  class="download-btn flex-1 text-center px-4 py-2.5 bg-black text-white text-sm font-semibold rounded-xl hover:bg-gray-800 transition-colors"
+                >
+                  Descargar Pack
+                </a>
+                <button class="fav-btn p-2.5 rounded-xl border border-gray-200 text-gray-500 hover:text-red-500 hover:bg-gray-50 transition-colors">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
-
-      
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-50 border-t border-gray-200 mt-6 sm:mt-8">
-      <div class="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-8">
-        <div class="flex flex-col md:flex-row md:justify-between">
-          <div class="mb-6 md:mb-0">
-            <div class="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
-              <div class="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span class="text-xs sm:text-sm font-bold text-white">X</span>
+    <footer class="bg-gray-50 border-t border-gray-200 mt-12">
+      <div class="max-w-7xl mx-auto px-4 py-12">
+        <div class="flex flex-col lg:flex-row lg:justify-between gap-8">
+          <div class="lg:max-w-sm">
+            <div class="flex items-center space-x-3 mb-4">
+              <div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center">
+                <span class="text-lg font-black text-white">XN</span>
               </div>
-              <span class="text-base sm:text-lg font-bold text-gray-800">XEEN STORE</span>
+              <div>
+                <h3 class="text-lg font-bold text-gray-900">XEEN STORE</h3>
+                <p class="text-xs text-gray-500">Repositorio by NIXON</p>
+              </div>
             </div>
-            <p class="text-xs sm:text-sm text-gray-600 max-w-md">
-              Tu tienda de aplicaciones y servicios premium. Todos los derechos
-              reservados © 2023
+            <p class="text-sm text-gray-600 mb-6 leading-relaxed">
+              Repositorio de aplicaciones y recursos para Windows y Android.
             </p>
+            <div class="flex space-x-2">
+              <a href="https://facebook.com" target="_blank" class="w-10 h-10 rounded-lg bg-white border border-gray-200 hover:border-gray-900 flex items-center justify-center text-gray-600 hover:text-gray-900 transition-all">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://twitter.com" target="_blank" class="w-10 h-10 rounded-lg bg-white border border-gray-200 hover:border-gray-900 flex items-center justify-center text-gray-600 hover:text-gray-900 transition-all">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="https://instagram.com" target="_blank" class="w-10 h-10 rounded-lg bg-white border border-gray-200 hover:border-gray-900 flex items-center justify-center text-gray-600 hover:text-gray-900 transition-all">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
           </div>
 
-          <div class="grid grid-cols-2 gap-6 sm:gap-8 sm:grid-cols-3">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
             <div>
-              <h3 class="text-xs sm:text-sm font-semibold text-gray-800 mb-2 sm:mb-3">Explorar</h3>
-              <ul class="space-y-1 sm:space-y-2">
-                <li>
-                  <a
-                    href="#"
-                    class="text-xs sm:text-sm text-gray-600 hover:text-primary-600"
-                  >
-                    Apps
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="text-xs sm:text-sm text-gray-600 hover:text-primary-600"
-                  >
-                    Juegos
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="text-xs sm:text-sm text-gray-600 hover:text-primary-600"
-                  >
-                    Películas
-                  </a>
-                </li>
+              <h3 class="text-sm font-bold text-gray-900 mb-4">Explorar</h3>
+              <ul class="space-y-2.5">
+                <li><a href="#apps" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Aplicaciones</a></li>
+                <li><a href="#apps" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Juegos</a></li>
+                <li><a href="#apps" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Herramientas</a></li>
               </ul>
             </div>
 
             <div>
-              <h3 class="text-xs sm:text-sm font-semibold text-gray-800 mb-2 sm:mb-3">
-                Información
-              </h3>
-              <ul class="space-y-1 sm:space-y-2">
-                <li>
-                  <a
-                    href="#"
-                    class="text-xs sm:text-sm text-gray-600 hover:text-primary-600"
-                  >
-                    Acerca de
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="text-xs sm:text-sm text-gray-600 hover:text-primary-600"
-                  >
-                    Contacto
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="text-xs sm:text-sm text-gray-600 hover:text-primary-600"
-                  >
-                    Blog
-                  </a>
-                </li>
+              <h3 class="text-sm font-bold text-gray-900 mb-4">Categorías</h3>
+              <ul class="space-y-2.5">
+                <li><a href="#apps" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Streaming</a></li>
+                <li><a href="#apps" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Multimedia</a></li>
+                <li><a href="#apps" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Productividad</a></li>
               </ul>
             </div>
 
-            <div class="col-span-2 sm:col-span-1">
-              <h3 class="text-xs sm:text-sm font-semibold text-gray-800 mb-2 sm:mb-3">Legal</h3>
-              <ul class="space-y-1 sm:space-y-2">
-                <li>
-                  <a
-                    href="#"
-                    class="text-xs sm:text-sm text-gray-600 hover:text-primary-600"
-                  >
-                    Términos
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="text-xs sm:text-sm text-gray-600 hover:text-primary-600"
-                  >
-                    Privacidad
-                  </a>
-                </li>
+            <div>
+              <h3 class="text-sm font-bold text-gray-900 mb-4">Legal</h3>
+              <ul class="space-y-2.5">
+                <li><a href="terminos.html" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Términos</a></li>
+                <li><a href="privacidad.html" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Privacidad</a></li>
               </ul>
             </div>
           </div>
         </div>
 
-        <div class="border-t border-gray-200 mt-6 sm:mt-8 pt-4 sm:pt-6 flex flex-col md:flex-row md:justify-between md:items-center">
-          <p class="text-xs text-gray-600 mb-3 md:mb-0">
-            © 2023 XEEN STORE BY NIXON. Todos los derechos reservados.
+        <div class="border-t border-gray-200 mt-8 pt-6">
+          <p class="text-xs text-gray-500 text-center">
+            © 2024 XEEN STORE by NIXON. Todos los derechos reservados.
           </p>
-          <div class="flex space-x-3 sm:space-x-4">
-            <a
-              href="#"
-              class="text-gray-600 hover:text-primary-600 text-sm"
-            >
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a
-              href="#"
-              class="text-gray-600 hover:text-primary-600 text-sm"
-            >
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a
-              href="#"
-              class="text-gray-600 hover:text-primary-600 text-sm"
-            >
-              <i class="fab fa-instagram"></i>
-            </a>
-          </div>
         </div>
       </div>
     </footer>
 
     <script>
+      // Global state
+      let favoritesCount = 0;
+      const favorites = new Set();
+
       // Search functionality
       document.addEventListener("DOMContentLoaded", function () {
         const searchInput = document.getElementById("search-input");
@@ -591,7 +601,137 @@
         const appsContainer = document.getElementById("apps-container");
         const appCards = appsContainer.querySelectorAll(".app-card");
 
+        // Sidebar menu functionality
+        const menuBtn = document.getElementById("menu-btn");
+        const closeMenuBtn = document.getElementById("close-menu");
+        const sidebarMenu = document.getElementById("sidebar-menu");
+        const menuOverlay = document.getElementById("menu-overlay");
+
+        function openMenu() {
+          sidebarMenu.classList.add("active");
+          menuOverlay.classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+
+        function closeMenu() {
+          sidebarMenu.classList.remove("active");
+          menuOverlay.classList.remove("active");
+          document.body.style.overflow = "";
+        }
+
+        function toggleMenu() {
+          if (sidebarMenu.classList.contains("active")) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        }
+
+        menuBtn.addEventListener("click", toggleMenu);
+        closeMenuBtn.addEventListener("click", closeMenu);
+        menuOverlay.addEventListener("click", closeMenu);
+
+        // Close menu with ESC key
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && sidebarMenu.classList.contains("active")) {
+            closeMenu();
+          }
+        });
+
+        // Close menu on link click
+        document.querySelectorAll("#sidebar-menu a").forEach((link) => {
+          link.addEventListener("click", () => {
+            closeMenu();
+          });
+        });
+
+        // Favorites functionality
+        const favoritesBtn = document.getElementById("favorites-btn");
+        const favoriteButtons = document.querySelectorAll(".fav-btn");
+        const favCounter = document.getElementById("fav-counter");
+
+        favoritesBtn.addEventListener("click", function () {
+          if (favoritesCount === 0) {
+            Swal.fire({
+              title: "Favoritos",
+              text: "No tienes aplicaciones favoritas todavía",
+              icon: "info",
+              confirmButtonColor: "#6366f1",
+              confirmButtonText: "Entendido",
+            });
+          } else {
+            Swal.fire({
+              title: "Mis Favoritos",
+              html: `Tienes <strong>${favoritesCount}</strong> aplicaciones marcadas como favoritas`,
+              icon: "success",
+              confirmButtonColor: "#6366f1",
+              confirmButtonText: "Genial",
+            });
+          }
+        });
+
+        // Individual favorite buttons
+        favoriteButtons.forEach((btn) => {
+          btn.addEventListener("click", function (e) {
+            e.preventDefault();
+            const card = this.closest(".app-card");
+            const appName = card.querySelector("h3").textContent;
+            const heartIcon = this.querySelector("i");
+
+            if (favorites.has(appName)) {
+              favorites.delete(appName);
+              favoritesCount--;
+              heartIcon.classList.remove("fa-solid");
+              heartIcon.classList.add("fa-regular");
+              this.classList.remove("text-red-500");
+
+              Swal.fire({
+                title: "Eliminado",
+                text: `${appName} se eliminó de favoritos`,
+                icon: "info",
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+              });
+            } else {
+              favorites.add(appName);
+              favoritesCount++;
+              heartIcon.classList.remove("fa-regular");
+              heartIcon.classList.add("fa-solid");
+              this.classList.add("text-red-500");
+
+              Swal.fire({
+                title: "¡Agregado!",
+                text: `${appName} se agregó a favoritos`,
+                icon: "success",
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+              });
+            }
+
+            // Update counter badge
+            updateFavoritesCounter();
+          });
+        });
+
+        function updateFavoritesCounter() {
+          favCounter.textContent = favoritesCount;
+          if (favoritesCount > 0) {
+            favCounter.classList.remove("opacity-0");
+            favCounter.classList.add("opacity-100");
+          } else {
+            favCounter.classList.remove("opacity-100");
+            favCounter.classList.add("opacity-0");
+          }
+        }
+
         function handleSearch(searchTerm) {
+          let visibleCount = 0;
           appCards.forEach((card) => {
             const appName = card.querySelector("h3").textContent.toLowerCase();
             const appDescription = card
@@ -604,10 +744,31 @@
               setTimeout(() => {
                 card.classList.remove("animate__animated", "animate__fadeIn");
               }, 500);
+              visibleCount++;
             } else {
               card.style.display = "none";
             }
           });
+
+          // Show message if no results
+          if (visibleCount === 0 && searchTerm) {
+            if (!document.getElementById("no-results-message")) {
+              const message = document.createElement("div");
+              message.id = "no-results-message";
+              message.className = "col-span-full text-center py-12";
+              message.innerHTML = `
+                <i class="fa-solid fa-magnifying-glass text-6xl text-gray-300 mb-4"></i>
+                <h3 class="text-xl font-bold text-gray-700 mb-2">No se encontraron resultados</h3>
+                <p class="text-gray-500">Intenta con otro término de búsqueda</p>
+              `;
+              appsContainer.appendChild(message);
+            }
+          } else {
+            const existingMessage = document.getElementById("no-results-message");
+            if (existingMessage) {
+              existingMessage.remove();
+            }
+          }
         }
 
         if (searchInput) {
@@ -624,22 +785,63 @@
           });
         }
 
-        // Category tabs
-        const categoryTabs = document.querySelectorAll(".category-tab");
-        categoryTabs.forEach((tab) => {
-          tab.addEventListener("click", function () {
-            categoryTabs.forEach((t) => t.classList.remove("active"));
+        // Category filter functionality
+        const categoryChips = document.querySelectorAll(".category-chip");
+        let currentCategory = "all";
+
+        categoryChips.forEach((chip) => {
+          chip.addEventListener("click", function () {
+            // Update active state
+            categoryChips.forEach((c) => c.classList.remove("active"));
             this.classList.add("active");
 
-            // Animation for category change
-            appCards.forEach((card) => {
+            // Get selected category
+            currentCategory = this.getAttribute("data-category");
+
+            // Filter cards
+            filterCards(currentCategory);
+          });
+        });
+
+        function filterCards(category) {
+          appCards.forEach((card) => {
+            const cardCategory = card.getAttribute("data-category");
+            
+            if (category === "all" || cardCategory === category) {
+              card.style.display = "";
               card.classList.add("animate__animated", "animate__fadeIn");
               setTimeout(() => {
                 card.classList.remove("animate__animated", "animate__fadeIn");
               }, 500);
-            });
+            } else {
+              card.style.display = "none";
+            }
           });
-        });
+        }
+
+        // "Ver todas" button functionality
+        const viewAllBtn = document.getElementById("view-all-btn");
+        if (viewAllBtn) {
+          viewAllBtn.addEventListener("click", function () {
+            // Reset to "all" category
+            categoryChips.forEach((c) => c.classList.remove("active"));
+            const allChip = document.querySelector('[data-category="all"]');
+            if (allChip) {
+              allChip.classList.add("active");
+            }
+            
+            // Show all cards
+            filterCards("all");
+            
+            // Clear search
+            if (searchInput) searchInput.value = "";
+            if (mobileSearchInput) mobileSearchInput.value = "";
+            
+            // Remove no results message if exists
+            const noResultsMsg = document.getElementById("no-results-message");
+            if (noResultsMsg) noResultsMsg.remove();
+          });
+        }
 
         // Download button click event with SweetAlert
         const downloadBtns = document.querySelectorAll(".download-btn");
@@ -647,20 +849,54 @@
           btn.addEventListener("click", function (e) {
             const appName =
               this.closest(".app-card")?.querySelector("h3")?.textContent ||
+              this.closest(".hero-gradient")?.querySelector("h2")?.textContent ||
               "la aplicación";
+            
+            const downloadUrl = this.getAttribute("href");
+            const isGitHub = downloadUrl && downloadUrl.includes("github.com");
 
-            Swal.fire({
-              title: `Descargando ${appName}`,
-              text: "Tu descarga comenzará en breve",
-              icon: "info",
-              showCancelButton: false,
-              confirmButtonColor: "#6366f1",
-              confirmButtonText: "Aceptar",
-              timer: 3000,
-              timerProgressBar: true,
-            });
-
-            // We don't prevent default to allow the download
+            // Si NO es GitHub, mostrar alerta de apertura de nueva pestaña
+            if (!isGitHub && downloadUrl) {
+              Swal.fire({
+                title: `Descargando ${appName}`,
+                html: `
+                  <div class="mb-4">
+                    <i class="fa-solid fa-external-link-alt text-5xl text-blue-500 mb-3"></i>
+                  </div>
+                  <p class="text-gray-600 mb-2">Se abrirá una nueva pestaña para descargar</p>
+                  <p class="text-sm text-gray-500">(${downloadUrl.includes('drive.google') ? 'Google Drive' : downloadUrl.includes('mediafire') ? 'MediaFire' : 'Sitio externo'})</p>
+                `,
+                icon: null,
+                showCancelButton: false,
+                confirmButtonColor: "#6366f1",
+                confirmButtonText: "Entendido",
+                timer: 3000,
+                timerProgressBar: true,
+                customClass: {
+                  popup: "rounded-2xl",
+                },
+              });
+            } else {
+              // Para GitHub, mostrar alerta normal
+              Swal.fire({
+                title: `Descargando ${appName}`,
+                html: `
+                  <div class="mb-4">
+                    <i class="fa-solid fa-download text-5xl text-indigo-500 mb-3"></i>
+                  </div>
+                  <p class="text-gray-600">Tu descarga comenzará en breve</p>
+                `,
+                icon: null,
+                showCancelButton: false,
+                confirmButtonColor: "#6366f1",
+                confirmButtonText: "Aceptar",
+                timer: 3000,
+                timerProgressBar: true,
+                customClass: {
+                  popup: "rounded-2xl",
+                },
+              });
+            }
           });
         });
 
@@ -682,6 +918,52 @@
         // Observe all app cards
         document.querySelectorAll(".app-card").forEach((card) => {
           observer.observe(card);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
+            if (href !== "#" && document.querySelector(href)) {
+              e.preventDefault();
+              document.querySelector(href).scrollIntoView({
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+
+        // Add entrance animations
+        setTimeout(() => {
+          document.querySelector("header").classList.add("animate__animated", "animate__fadeInDown");
+        }, 100);
+
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+              .then((registration) => {
+                console.log('✅ Service Worker registrado:', registration.scope);
+              })
+              .catch((error) => {
+                console.log('❌ Error al registrar Service Worker:', error);
+              });
+          });
+        }
+
+        // PWA Install prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+          e.preventDefault();
+          deferredPrompt = e;
+          
+          // Show install button (you can add a button in your UI)
+          console.log('💾 PWA instalable - By NIXON');
+        });
+
+        window.addEventListener('appinstalled', () => {
+          console.log('✅ XEEN STORE instalada como PWA');
+          deferredPrompt = null;
         });
       });
     </script>
