@@ -310,129 +310,169 @@
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
       <!-- Hero Banner -->
-      <section class="mb-8">
-        <div class="rounded-2xl hero-section overflow-hidden">
-          <div class="md:flex items-center">
-            <div class="p-8 md:p-12 md:w-3/5">
-              <div class="inline-block px-3 py-1.5 bg-white/20 backdrop-blur-sm rounded-lg text-white text-xs font-semibold mb-4">
-                <i class="fa-solid fa-star mr-1"></i>DESTACADO
-              </div>
-              <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
-                MagisTV Premium
+      <section class="mb-6 sm:mb-8 animate__animated animate__fadeIn">
+        <div class="rounded-xl sm:rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg overflow-hidden">
+          <div class="md:flex">
+            <div class="p-4 sm:p-6 md:p-8 md:w-3/5">
+              <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">
+                Xuper (MagisTV) Premium
               </h2>
-              <p class="text-white/90 mb-6 text-base leading-relaxed max-w-md">
-                Disfruta de miles de canales y contenido premium en tu dispositivo favorito.
+              <p class="text-indigo-100 mb-2 text-xs sm:text-sm">
+                <i class="fa-solid fa-info-circle mr-1"></i>
+                <strong>Nota:</strong> MagisTV ahora se llama Xuper
+              </p>
+              <p class="text-indigo-100 mb-4 sm:mb-6 text-sm sm:text-base">
+                Disfruta de miles de canales y contenido premium en tu dispositivo
+                favorito. Descarga oficial disponible.
               </p>
               <a
-                href="https://github.com/Argon69/xeendescargas/raw/refs/heads/main/signMagisTV_TG-RAMON.apk"
-                class="download-btn inline-flex items-center px-6 py-3 bg-white text-gray-900 font-semibold rounded-xl hover:bg-gray-50 transition-all shadow-lg"
+                href="https://app.lat-servicio.tv/app/XPR_A-RAMO.apk"
+                class="download-btn inline-flex items-center px-4 sm:px-5 py-2.5 sm:py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-indigo-50 transition-colors text-sm sm:text-base"
               >
                 <i class="fa-solid fa-download mr-2"></i>
                 Descargar ahora
               </a>
             </div>
-            <div class="hidden md:flex md:w-2/5 items-center justify-center p-8">
-              <div class="bg-white/10 backdrop-blur-xl rounded-2xl p-8">
-                <i class="fa-solid fa-tv text-white text-8xl opacity-90"></i>
+            <div class="hidden md:block md:w-2/5">
+              <div class="h-full flex items-center justify-center p-6">
+                <img
+                  src="https://placehold.co/300x200/6366F1/FFFFFF?text=Xuper"
+                  alt="Xuper (MagisTV)"
+                  class="rounded-xl shadow-lg max-h-48"
+                />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Category Chips -->
-      <section class="mb-8">
-        <div class="flex overflow-x-auto scrollbar-hide gap-2 pb-2">
-          <button data-category="all" class="category-chip active flex-shrink-0 px-5 py-2.5 bg-black text-white text-sm font-medium rounded-full">
-            Todas
-          </button>
-          <button data-category="streaming" class="category-chip flex-shrink-0 px-5 py-2.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-full hover:bg-gray-200">
-            <i class="fa-solid fa-tv mr-1.5"></i>
-            Streaming
-          </button>
-          <button data-category="productivity" class="category-chip flex-shrink-0 px-5 py-2.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-full hover:bg-gray-200">
-            <i class="fa-solid fa-briefcase mr-1.5"></i>
-            Productividad
-          </button>
-          <button data-category="multimedia" class="category-chip flex-shrink-0 px-5 py-2.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-full hover:bg-gray-200">
-            <i class="fa-solid fa-film mr-1.5"></i>
-            Multimedia
-          </button>
-          <button data-category="windows" class="category-chip flex-shrink-0 px-5 py-2.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-full hover:bg-gray-200">
-            <i class="fa-brands fa-windows mr-1.5"></i>
-            Windows
-          </button>
-        </div>
-      </section>
-
       <!-- App Section -->
-      <section class="mb-12" id="apps">
-        <div class="flex items-center justify-between mb-6">
-          <h2 class="text-2xl font-bold text-gray-900">Aplicaciones</h2>
-          <button id="view-all-btn" class="text-sm text-gray-600 hover:text-gray-900 font-medium transition-colors">
-            Ver todas →
-          </button>
+      <section class="mb-8 sm:mb-10">
+        <div class="flex items-center justify-between mb-4 sm:mb-6">
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Apps Populares</h2>
+          <a
+            href="#"
+            class="text-primary-600 font-medium text-xs sm:text-sm hover:underline"
+          >
+            Ver todas
+          </a>
         </div>
 
         <div
           id="apps-container"
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
         >
-          <!-- MagisTV Card -->
-          <div class="app-card rounded-2xl overflow-hidden relative" data-category="streaming">
-            <span class="badge bg-orange-500">DESACTUALIZADA</span>
-            <div class="bg-gradient-to-br from-indigo-500 to-purple-600 h-40 flex items-center justify-center">
-              <i class="fa-solid fa-tv text-white text-6xl opacity-90"></i>
-            </div>
-            <div class="p-5">
-              <h3 class="text-lg font-bold text-gray-900 mb-1">MagisTV</h3>
-              <div class="bg-yellow-50 border-l-2 border-yellow-500 px-3 py-2 mb-3 text-xs">
-                <p class="text-yellow-800 font-semibold"><i class="fa-solid fa-triangle-exclamation mr-1"></i>Versión antigua - Ahora es Xuper</p>
-                <p class="text-yellow-700 mt-1">Actualiza después de instalar. Versión actual próximamente.</p>
+          <!-- Xuper (MagisTV) Card - Smart TV/Android TV/Fire TV Stick -->
+          <div class="app-card bg-white rounded-xl shadow-sm overflow-hidden">
+            <div class="aspect-w-16 aspect-h-9 bg-gray-100 relative">
+              <img
+                src="https://placehold.co/600x350/6366F1/FFFFFF?text=Xuper+TV"
+                alt="Xuper TV"
+                class="w-full h-40 sm:h-48 object-cover"
+              />
+              <div class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                Oficial
               </div>
-              <p class="text-sm text-gray-500 mb-3">Streaming • 45 MB</p>
-              <p class="text-sm text-gray-600 mb-4 line-clamp-2">
-                Disfruta de miles de canales y contenido premium.
+            </div>
+            <div class="p-4 sm:p-5">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-indigo-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-3 sm:mr-4">
+                  <i class="fa-solid fa-tv text-white text-sm sm:text-lg"></i>
+                </div>
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-base sm:text-lg font-semibold text-gray-800">Xuper TV</h3>
+                  <p class="text-xs sm:text-sm text-gray-500">Antes: MagisTV</p>
+                </div>
+              </div>
+
+              <div class="flex items-center text-xs sm:text-sm mb-3">
+                <div class="flex items-center text-yellow-400">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <span class="ml-2 text-gray-600">4.8</span>
+                <span class="mx-2 text-gray-300">•</span>
+                <span class="text-gray-500">45 MB</span>
+              </div>
+
+              <p class="text-xs sm:text-sm text-gray-600 mb-2">
+                <strong>Para:</strong> Smart TV, Android TV y Fire TV Stick
               </p>
-              <div class="flex gap-2">
+              <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 line-clamp-2">
+                La mejor aplicación para disfrutar de tus canales favoritos. Descarga desde servidores oficiales.
+              </p>
+
+              <div class="flex space-x-2 sm:space-x-3">
                 <a
-                  href="https://github.com/Argon69/xenontechmagis/raw/refs/heads/main/magis/signMagisTV_TG-MALL.apk"
-                  class="download-btn flex-1 text-center px-4 py-2.5 bg-black text-white text-sm font-semibold rounded-xl hover:bg-gray-800 transition-colors"
+                  href="https://app.lat-servicio.tv/app/XPR_A-RAMO.apk"
+                  class="download-btn flex-1 text-center px-3 sm:px-4 py-2 bg-indigo-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors"
                 >
                   Descargar
                 </a>
-                <button class="fav-btn p-2.5 rounded-xl border border-gray-200 text-gray-500 hover:text-red-500 hover:bg-gray-50 transition-colors">
-                  <i class="fa-regular fa-heart"></i>
+                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 flex-shrink-0">
+                  <i class="fa-regular fa-heart text-xs sm:text-sm"></i>
                 </button>
               </div>
             </div>
           </div>
 
-          <!-- MagisTV Mobile Card -->
-          <div class="app-card rounded-2xl overflow-hidden relative" data-category="streaming">
-            <span class="badge bg-orange-500">DESACTUALIZADA</span>
-            <div class="bg-gradient-to-br from-purple-500 to-pink-600 h-40 flex items-center justify-center">
-              <i class="fa-solid fa-mobile-screen text-white text-6xl opacity-90"></i>
-            </div>
-            <div class="p-5">
-              <h3 class="text-lg font-bold text-gray-900 mb-1">MagisTV Móvil</h3>
-              <div class="bg-yellow-50 border-l-2 border-yellow-500 px-3 py-2 mb-3 text-xs">
-                <p class="text-yellow-800 font-semibold"><i class="fa-solid fa-triangle-exclamation mr-1"></i>Versión antigua - Ahora es Xuper</p>
-                <p class="text-yellow-700 mt-1">Actualiza después de instalar. Versión actual próximamente.</p>
+          <!-- Xuper Mobile (MagisTV Móvil) Card - Android celular/tablet -->
+          <div class="app-card bg-white rounded-xl shadow-sm overflow-hidden">
+            <div class="aspect-w-16 aspect-h-9 bg-gray-100 relative">
+              <img
+                src="https://placehold.co/600x350/9333EA/FFFFFF?text=Xuper+Mobile"
+                alt="Xuper Mobile"
+                class="w-full h-40 sm:h-48 object-cover"
+              />
+              <div class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                Oficial
               </div>
-              <p class="text-sm text-gray-500 mb-3">Streaming • 38 MB</p>
-              <p class="text-sm text-gray-600 mb-4 line-clamp-2">
-                Versión optimizada para dispositivos móviles.
+            </div>
+            <div class="p-4 sm:p-5">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 mr-3 sm:mr-4">
+                  <i class="fa-solid fa-mobile-screen text-white text-sm sm:text-lg"></i>
+                </div>
+                <div class="min-w-0 flex-1">
+                  <h3 class="text-base sm:text-lg font-semibold text-gray-800">
+                    Xuper Mobile
+                  </h3>
+                  <p class="text-xs sm:text-sm text-gray-500">Antes: MagisTV Móvil</p>
+                </div>
+              </div>
+
+              <div class="flex items-center text-xs sm:text-sm mb-3">
+                <div class="flex items-center text-yellow-400">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <span class="ml-2 text-gray-600">4.7</span>
+                <span class="mx-2 text-gray-300">•</span>
+                <span class="text-gray-500">38 MB</span>
+              </div>
+
+              <p class="text-xs sm:text-sm text-gray-600 mb-2">
+                <strong>Para:</strong> Android celular y tablet
               </p>
-              <div class="flex gap-2">
+              <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 line-clamp-2">
+                Versión optimizada para móviles. Disfruta de tus contenidos favoritos en cualquier lugar.
+              </p>
+
+              <div class="flex space-x-2 sm:space-x-3">
                 <a
-                  href="https://github.com/Argon69/xenontechmagis/raw/refs/heads/main/magis/mgsMob_5.6.3_f620e598_20240321_180_release_jiagu.apk"
-                  class="download-btn flex-1 text-center px-4 py-2.5 bg-black text-white text-sm font-semibold rounded-xl hover:bg-gray-800 transition-colors"
+                  href="https://app.lat-servicio.app/app/XPRmob_A-RAMO.apk"
+                  class="download-btn flex-1 text-center px-3 sm:px-4 py-2 bg-purple-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-purple-700 transition-colors"
                 >
                   Descargar
                 </a>
-                <button class="fav-btn p-2.5 rounded-xl border border-gray-200 text-gray-500 hover:text-red-500 hover:bg-gray-50 transition-colors">
-                  <i class="fa-regular fa-heart"></i>
+                <button class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 flex-shrink-0">
+                  <i class="fa-regular fa-heart text-xs sm:text-sm"></i>
                 </button>
               </div>
             </div>
